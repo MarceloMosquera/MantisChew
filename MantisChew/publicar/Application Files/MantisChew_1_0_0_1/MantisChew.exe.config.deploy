@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="MantisChew.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+    </startup>
+    <userSettings>
+        <MantisChew.Properties.Settings>
+            <setting name="Usuarios" serializeAs="String">
+                <value>Marcos Guaymas Javier|Marcelo Mosquera|Carlos Enrique Yanez|Nicolas Ramirez|Marco Paredes Reccio|Julian Di Riso|Javier Campa|Rodriguez, Emanuel|Facundo Yuffrida</value>
+            </setting>
+            <setting name="MantisInternos" serializeAs="String">
+                <value>24452|24188|24453|24612</value>
+            </setting>
+        </MantisChew.Properties.Settings>
+    </userSettings>
+</configuration>

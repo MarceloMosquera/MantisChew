@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MantisChew.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Usuarios" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Marcos Guaymas Javier|Marcelo Mosquera|Carlos Enrique Yanez|Nicolas Ramirez|Marco Paredes Reccio|Julian Di Riso|Javier Campa|Rodriguez, Emanuel|Facundo Yuffrida
+</Value>
+    </Setting>
+    <Setting Name="MantisInternos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">24452|24188|24453|24612</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
