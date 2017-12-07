@@ -34,26 +34,28 @@
             this.btnRefrescarDias = new System.Windows.Forms.Button();
             this.btnEquipo = new System.Windows.Forms.Button();
             this.dgvHorasxMantis = new System.Windows.Forms.DataGridView();
-            this.btnBuscarEnJira = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvHorasxFecha = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnBuscarTodosJira = new System.Windows.Forms.Button();
+            this.btnIrAJira = new System.Windows.Forms.Button();
+            this.btnIrAMantis = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxFecha)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "\"Mantis|*.XLS;*.xls\";";
             // 
             // btnCargar
             // 
@@ -110,16 +112,7 @@
             this.dgvHorasxMantis.Size = new System.Drawing.Size(548, 266);
             this.dgvHorasxMantis.TabIndex = 6;
             this.dgvHorasxMantis.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvHorasxMantis_RowPrePaint);
-            // 
-            // btnBuscarEnJira
-            // 
-            this.btnBuscarEnJira.Location = new System.Drawing.Point(3, 3);
-            this.btnBuscarEnJira.Name = "btnBuscarEnJira";
-            this.btnBuscarEnJira.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarEnJira.TabIndex = 7;
-            this.btnBuscarEnJira.Text = "Buscar Jira";
-            this.btnBuscarEnJira.UseVisualStyleBackColor = true;
-            this.btnBuscarEnJira.Click += new System.EventHandler(this.btnBuscarEnJira_Click);
+            this.dgvHorasxMantis.SelectionChanged += new System.EventHandler(this.dgvHorasxMantis_SelectionChanged);
             // 
             // tabControl1
             // 
@@ -173,17 +166,6 @@
             this.tabPage2.Text = "Horas x Mantis";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnBuscarTodosJira);
-            this.panel1.Controls.Add(this.btnBuscarEnJira);
-            this.panel1.Location = new System.Drawing.Point(3, 275);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(545, 31);
-            this.panel1.TabIndex = 7;
-            // 
             // dgvHorasxJira
             // 
             this.dgvHorasxJira.AllowUserToAddRows = false;
@@ -201,15 +183,47 @@
             this.dgvHorasxJira.Size = new System.Drawing.Size(548, 115);
             this.dgvHorasxJira.TabIndex = 8;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.btnIrAMantis);
+            this.panel1.Controls.Add(this.btnIrAJira);
+            this.panel1.Controls.Add(this.btnBuscarTodosJira);
+            this.panel1.Location = new System.Drawing.Point(3, 275);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(545, 31);
+            this.panel1.TabIndex = 7;
+            // 
             // btnBuscarTodosJira
             // 
-            this.btnBuscarTodosJira.Location = new System.Drawing.Point(84, 3);
+            this.btnBuscarTodosJira.Location = new System.Drawing.Point(3, 5);
             this.btnBuscarTodosJira.Name = "btnBuscarTodosJira";
             this.btnBuscarTodosJira.Size = new System.Drawing.Size(136, 23);
             this.btnBuscarTodosJira.TabIndex = 8;
-            this.btnBuscarTodosJira.Text = "Buscar Todos Jira";
+            this.btnBuscarTodosJira.Text = "Buscar Todos En Jira";
             this.btnBuscarTodosJira.UseVisualStyleBackColor = true;
             this.btnBuscarTodosJira.Click += new System.EventHandler(this.btnBuscarTodosJira_Click);
+            // 
+            // btnIrAJira
+            // 
+            this.btnIrAJira.Location = new System.Drawing.Point(467, 5);
+            this.btnIrAJira.Name = "btnIrAJira";
+            this.btnIrAJira.Size = new System.Drawing.Size(75, 23);
+            this.btnIrAJira.TabIndex = 9;
+            this.btnIrAJira.Text = "Ir a Jira";
+            this.btnIrAJira.UseVisualStyleBackColor = true;
+            this.btnIrAJira.Click += new System.EventHandler(this.btnIrAJira_Click);
+            // 
+            // btnIrAMantis
+            // 
+            this.btnIrAMantis.Location = new System.Drawing.Point(374, 5);
+            this.btnIrAMantis.Name = "btnIrAMantis";
+            this.btnIrAMantis.Size = new System.Drawing.Size(75, 23);
+            this.btnIrAMantis.TabIndex = 10;
+            this.btnIrAMantis.Text = "Ir a Mantis";
+            this.btnIrAMantis.UseVisualStyleBackColor = true;
+            this.btnIrAMantis.Click += new System.EventHandler(this.btnIrAMantis_Click);
             // 
             // Form1
             // 
@@ -228,8 +242,8 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxFecha)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -242,7 +256,6 @@
         private System.Windows.Forms.Button btnRefrescarDias;
         private System.Windows.Forms.Button btnEquipo;
         private System.Windows.Forms.DataGridView dgvHorasxMantis;
-        private System.Windows.Forms.Button btnBuscarEnJira;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dgvHorasxFecha;
@@ -250,6 +263,8 @@
         private System.Windows.Forms.DataGridView dgvHorasxJira;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBuscarTodosJira;
+        private System.Windows.Forms.Button btnIrAJira;
+        private System.Windows.Forms.Button btnIrAMantis;
     }
 }
 

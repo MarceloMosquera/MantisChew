@@ -23,34 +23,44 @@ namespace MantisChew
 
         private Dictionary<int, DataTable> JirasBuscados = new Dictionary<int, DataTable>();
 
-        Jira.SDK.Jira jira = new Jira.SDK.Jira();
+        private Jira.SDK.Jira jira = new Jira.SDK.Jira();
+
+        private string JiraUrl = "";
+        private string MantisUrl = "";
 
 
         public Form1()
         {
             InitializeComponent();
             CargarEquipo();
-
-            jira.Connect("https://baufest.atlassian.net", "mmosquera@baufest.com", "Ab123456");
+            ConectarJira();
+            this.MantisUrl = Properties.Settings.Default.MantisUrl;
         }
 
         private void CargarEquipo()
         {
-            //EquipoActivo.Usuarios = new List<string>() {
-            //"Marcos Guaymas Javier", "Marcelo Mosquera", "Carlos Enrique Yanez",
-            //"Nicolas Ramirez","Marco Paredes Reccio", "Julian Di Riso",
-            //"Javier Campa", "Rodriguez, Emanuel", "Facundo Yuffrida" };
-            //EquipoActivo.MantisInternos = new List<int>() {
-            //24452, 24188, 24453, 24612 };
             EquipoActivo.Usuarios.AddRange(Properties.Settings.Default.Usuarios.Split('|'));
             EquipoActivo.MantisInternos.AddRange(Properties.Settings.Default.MantisInternos.Split('|').Select(x => int.Parse(x)));
-
         }
         private void CargarUsuarios()
         {
             var usuarios = DatosArchivo.Select(tt => tt.Usuario).Distinct();
             clstUsuarios.Items.Clear();
             clstUsuarios.Items.AddRange(usuarios.ToArray());
+        }
+        private void ConectarJira()
+        {
+            try
+            {
+                this.JiraUrl = Properties.Settings.Default.JiraURL;
+                jira.Connect(this.JiraUrl, 
+                    Properties.Settings.Default.JiraUser, 
+                    Properties.Settings.Default.JiraPass);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("No se pudo conectar a Jira" + e.Message);
+            }
         }
 
         private void CargarDGVHorasxFecha()
@@ -220,6 +230,7 @@ namespace MantisChew
             {
                 DatosArchivo = FileParser.Parse(openFileDialog1.FileName);
                 CargarUsuarios();
+                btnEquipo_Click(sender, e);
             }
         }
         private void btnRefrescarDias_Click(object sender, EventArgs e)
@@ -266,6 +277,35 @@ namespace MantisChew
             {
                 var mantis = (int)row[0];
                 CargarDGVHorasxJira(mantis);
+            }
+        }
+
+        private void btnIrAJira_Click(object sender, EventArgs e)
+        {
+            if (dgvHorasxJira.SelectedCells.Count > 0)
+            {
+                var key = (string)dgvHorasxJira.Rows[dgvHorasxJira.SelectedCells[0].RowIndex].Cells[0].Value;
+                System.Diagnostics.Process.Start(
+                    this.JiraUrl + string.Format("/browse/{0}", key));
+            }
+        }
+
+        private void dgvHorasxMantis_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvHorasxMantis.SelectedCells.Count > 0)
+            {
+                var mantis = (int)dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value;
+                CargarDGVHorasxJira(mantis);
+            }
+        }
+
+        private void btnIrAMantis_Click(object sender, EventArgs e)
+        {
+            if (dgvHorasxMantis.SelectedCells.Count > 0)
+            {
+                var mantis = dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+                System.Diagnostics.Process.Start(
+                    this.MantisUrl + mantis);
             }
         }
     }

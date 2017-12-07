@@ -26,8 +26,7 @@ namespace MantisChew.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Marcos Guaymas Javier|Marcelo Mosquera|Carlos Enrique Yanez|Nicolas Ramirez|Marco" +
-            " Paredes Reccio|Julian Di Riso|Javier Campa|Rodriguez, Emanuel|Facundo Yuffrida\r" +
-            "\n")]
+            " Paredes Reccio|Julian Di Riso|Javier Campa|Rodriguez, Emanuel|Facundo Yuffrida")]
         public string Usuarios {
             get {
                 return ((string)(this["Usuarios"]));
@@ -39,13 +38,61 @@ namespace MantisChew.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("24452|24188|24453|24612")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://baufest.atlassian.net")]
+        public string JiraURL {
+            get {
+                return ((string)(this["JiraURL"]));
+            }
+            set {
+                this["JiraURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mmosquera@baufest.com")]
+        public string JiraUser {
+            get {
+                return ((string)(this["JiraUser"]));
+            }
+            set {
+                this["JiraUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ab123456")]
+        public string JiraPass {
+            get {
+                return ((string)(this["JiraPass"]));
+            }
+            set {
+                this["JiraPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("24452|24188|24453|24612|24620")]
         public string MantisInternos {
             get {
                 return ((string)(this["MantisInternos"]));
             }
             set {
                 this["MantisInternos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://mantis.cencosud.corp/it/view.php?id=")]
+        public string MantisUrl {
+            get {
+                return ((string)(this["MantisUrl"]));
+            }
+            set {
+                this["MantisUrl"] = value;
             }
         }
     }
