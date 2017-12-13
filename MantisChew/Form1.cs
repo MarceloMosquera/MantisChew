@@ -199,6 +199,8 @@ namespace MantisChew
             dtHorasxJira.Columns.Add(new DataColumn("Nro", typeof(string)));
             dtHorasxJira.Columns.Add(new DataColumn("Summary", typeof(string)));
             dtHorasxJira.Columns.Add(new DataColumn("Hrs", typeof(decimal)));
+            dtHorasxJira.Columns.Add(new DataColumn("Asignado", typeof(string)));
+            dtHorasxJira.Columns.Add(new DataColumn("Estado", typeof(string)));
             return dtHorasxJira;
         }
 
@@ -211,6 +213,8 @@ namespace MantisChew
                 row["Nro"] = issue.Key;
                 row["Summary"] = issue.Summary;
                 row["Hrs"] = issue.TimeTracking.TimeSpentSeconds / 60 / 60;
+                row["Asignado"] = issue.Assignee?.Name;
+                row["Estado"] = issue.Status.Name;
                 dtHorasxJira.Rows.Add(row);
             }
             JirasBuscados.Add(mantis, dtHorasxJira); 
@@ -221,7 +225,35 @@ namespace MantisChew
         {
             //Gets all of the projects configured in your jira instance
             //List<Project> projects = jira.GetProjects();
-            return jira.SearchIssues(string.Format(@"text~""{0}""", mantis));
+            return jira.SearchIssues(string.Format(@"text~""{0}"" and project=""Cencosud - Super NET"" and issuetype in (Sub-task) and Sprint in openSprints()", mantis));
+        }
+
+        private DataTable CrearDTDetalleMantis()
+        {
+            var usuarios = new List<string>();
+            foreach (var chkUsuario in clstUsuarios.CheckedItems)
+                usuarios.Add(chkUsuario.ToString());
+
+            var dtDetalleMantis = new DataTable();
+            dtDetalleMantis.Columns.Add(new DataColumn("Mantis", typeof(int)));
+            dtDetalleMantis.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+            dtDetalleMantis.Columns.Add(new DataColumn("Hrs", typeof(decimal)));
+            return dtDetalleMantis;
+        }
+        private DataTable CargarDetalleMantis(DataTable dtDetalleMantis, string usuario, string strFecha)
+        {
+            var fecha = DateTime.ParseExact(strFecha, "dd/MM", null);
+            var mantis = DatosArchivo.Where(m=> m.Usuario == usuario && m.Fecha == fecha);
+
+            foreach (var mnt in mantis)
+            {
+                var row = dtDetalleMantis.NewRow();
+                row["Mantis"] = mnt.Mantis;
+                row["Descripcion"] = mnt.Descripcion;
+                row["Hrs"] = mnt.Horas;
+                dtDetalleMantis.Rows.Add(row);
+            }
+            return dtDetalleMantis;
         }
 
         private void btnCargar_Click(object sender, EventArgs e)
@@ -292,7 +324,7 @@ namespace MantisChew
 
         private void dgvHorasxMantis_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvHorasxMantis.SelectedCells.Count > 0)
+            if (dgvHorasxMantis.SelectedCells.Count > 0 && JirasBuscados.Count > 0)
             {
                 var mantis = (int)dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value;
                 CargarDGVHorasxJira(mantis);
@@ -306,6 +338,20 @@ namespace MantisChew
                 var mantis = dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
                 System.Diagnostics.Process.Start(
                     this.MantisUrl + mantis);
+            }
+        }
+
+        private void dgvHorasxFecha_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvHorasxFecha.SelectedCells.Count > 0 && dgvHorasxFecha.SelectedCells[0].ColumnIndex > 0)
+            {
+                var fecha = dgvHorasxFecha.Columns[dgvHorasxFecha.SelectedCells[0].ColumnIndex].HeaderText; 
+                var usuario = dgvHorasxFecha.Rows[dgvHorasxFecha.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+
+                dgvDetalleMantis.DataSource = CargarDetalleMantis(CrearDTDetalleMantis(), usuario, fecha);
+                dgvDetalleMantis.Refresh();
+
+                //dgvDetalleMantis.DataBindings
             }
         }
     }

@@ -36,20 +36,32 @@
             this.dgvHorasxMantis = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvHorasxFecha = new System.Windows.Forms.DataGridView();
+            this.dgvDetalleMantis = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBuscarTodosJira = new System.Windows.Forms.Button();
-            this.btnIrAJira = new System.Windows.Forms.Button();
             this.btnIrAMantis = new System.Windows.Forms.Button();
+            this.btnIrAJira = new System.Windows.Forms.Button();
+            this.btnBuscarTodosJira = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxFecha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleMantis)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -100,16 +112,14 @@
             this.dgvHorasxMantis.AllowUserToAddRows = false;
             this.dgvHorasxMantis.AllowUserToDeleteRows = false;
             this.dgvHorasxMantis.AllowUserToOrderColumns = true;
-            this.dgvHorasxMantis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHorasxMantis.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvHorasxMantis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHorasxMantis.Location = new System.Drawing.Point(3, 3);
+            this.dgvHorasxMantis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvHorasxMantis.Location = new System.Drawing.Point(0, 0);
             this.dgvHorasxMantis.Name = "dgvHorasxMantis";
             this.dgvHorasxMantis.ReadOnly = true;
             this.dgvHorasxMantis.RowHeadersVisible = false;
-            this.dgvHorasxMantis.Size = new System.Drawing.Size(548, 266);
+            this.dgvHorasxMantis.Size = new System.Drawing.Size(548, 271);
             this.dgvHorasxMantis.TabIndex = 6;
             this.dgvHorasxMantis.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvHorasxMantis_RowPrePaint);
             this.dgvHorasxMantis.SelectionChanged += new System.EventHandler(this.dgvHorasxMantis_SelectionChanged);
@@ -129,7 +139,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dgvHorasxFecha);
+            this.tabPage1.Controls.Add(this.splitContainer1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -138,6 +148,24 @@
             this.tabPage1.Text = "Carga de Horas";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvHorasxFecha);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvDetalleMantis);
+            this.splitContainer1.Size = new System.Drawing.Size(548, 427);
+            this.splitContainer1.SplitterDistance = 279;
+            this.splitContainer1.TabIndex = 6;
+            // 
             // dgvHorasxFecha
             // 
             this.dgvHorasxFecha.AllowUserToAddRows = false;
@@ -145,19 +173,32 @@
             this.dgvHorasxFecha.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvHorasxFecha.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHorasxFecha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvHorasxFecha.Location = new System.Drawing.Point(3, 3);
+            this.dgvHorasxFecha.Location = new System.Drawing.Point(0, 0);
             this.dgvHorasxFecha.Name = "dgvHorasxFecha";
             this.dgvHorasxFecha.ReadOnly = true;
             this.dgvHorasxFecha.RowHeadersVisible = false;
-            this.dgvHorasxFecha.Size = new System.Drawing.Size(548, 427);
+            this.dgvHorasxFecha.Size = new System.Drawing.Size(548, 279);
             this.dgvHorasxFecha.TabIndex = 4;
             this.dgvHorasxFecha.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvHorasxFecha_CellFormatting);
+            this.dgvHorasxFecha.SelectionChanged += new System.EventHandler(this.dgvHorasxFecha_SelectionChanged);
+            // 
+            // dgvDetalleMantis
+            // 
+            this.dgvDetalleMantis.AllowUserToAddRows = false;
+            this.dgvDetalleMantis.AllowUserToDeleteRows = false;
+            this.dgvDetalleMantis.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.dgvDetalleMantis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleMantis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetalleMantis.Location = new System.Drawing.Point(0, 0);
+            this.dgvDetalleMantis.Name = "dgvDetalleMantis";
+            this.dgvDetalleMantis.ReadOnly = true;
+            this.dgvDetalleMantis.RowHeadersVisible = false;
+            this.dgvDetalleMantis.Size = new System.Drawing.Size(548, 144);
+            this.dgvDetalleMantis.TabIndex = 5;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dgvHorasxJira);
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Controls.Add(this.dgvHorasxMantis);
+            this.tabPage2.Controls.Add(this.splitContainer2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -171,39 +212,37 @@
             this.dgvHorasxJira.AllowUserToAddRows = false;
             this.dgvHorasxJira.AllowUserToDeleteRows = false;
             this.dgvHorasxJira.AllowUserToOrderColumns = true;
-            this.dgvHorasxJira.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHorasxJira.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvHorasxJira.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHorasxJira.Location = new System.Drawing.Point(3, 312);
+            this.dgvHorasxJira.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvHorasxJira.Location = new System.Drawing.Point(0, 0);
             this.dgvHorasxJira.Name = "dgvHorasxJira";
             this.dgvHorasxJira.ReadOnly = true;
             this.dgvHorasxJira.RowHeadersVisible = false;
             this.dgvHorasxJira.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHorasxJira.Size = new System.Drawing.Size(548, 115);
+            this.dgvHorasxJira.Size = new System.Drawing.Size(548, 152);
             this.dgvHorasxJira.TabIndex = 8;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.btnIrAMantis);
             this.panel1.Controls.Add(this.btnIrAJira);
             this.panel1.Controls.Add(this.btnBuscarTodosJira);
-            this.panel1.Location = new System.Drawing.Point(3, 275);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(545, 31);
+            this.panel1.Size = new System.Drawing.Size(548, 31);
             this.panel1.TabIndex = 7;
             // 
-            // btnBuscarTodosJira
+            // btnIrAMantis
             // 
-            this.btnBuscarTodosJira.Location = new System.Drawing.Point(3, 5);
-            this.btnBuscarTodosJira.Name = "btnBuscarTodosJira";
-            this.btnBuscarTodosJira.Size = new System.Drawing.Size(136, 23);
-            this.btnBuscarTodosJira.TabIndex = 8;
-            this.btnBuscarTodosJira.Text = "Buscar Todos En Jira";
-            this.btnBuscarTodosJira.UseVisualStyleBackColor = true;
-            this.btnBuscarTodosJira.Click += new System.EventHandler(this.btnBuscarTodosJira_Click);
+            this.btnIrAMantis.Location = new System.Drawing.Point(374, 5);
+            this.btnIrAMantis.Name = "btnIrAMantis";
+            this.btnIrAMantis.Size = new System.Drawing.Size(75, 23);
+            this.btnIrAMantis.TabIndex = 10;
+            this.btnIrAMantis.Text = "Ir a Mantis";
+            this.btnIrAMantis.UseVisualStyleBackColor = true;
+            this.btnIrAMantis.Click += new System.EventHandler(this.btnIrAMantis_Click);
             // 
             // btnIrAJira
             // 
@@ -215,15 +254,34 @@
             this.btnIrAJira.UseVisualStyleBackColor = true;
             this.btnIrAJira.Click += new System.EventHandler(this.btnIrAJira_Click);
             // 
-            // btnIrAMantis
+            // btnBuscarTodosJira
             // 
-            this.btnIrAMantis.Location = new System.Drawing.Point(374, 5);
-            this.btnIrAMantis.Name = "btnIrAMantis";
-            this.btnIrAMantis.Size = new System.Drawing.Size(75, 23);
-            this.btnIrAMantis.TabIndex = 10;
-            this.btnIrAMantis.Text = "Ir a Mantis";
-            this.btnIrAMantis.UseVisualStyleBackColor = true;
-            this.btnIrAMantis.Click += new System.EventHandler(this.btnIrAMantis_Click);
+            this.btnBuscarTodosJira.Location = new System.Drawing.Point(3, 5);
+            this.btnBuscarTodosJira.Name = "btnBuscarTodosJira";
+            this.btnBuscarTodosJira.Size = new System.Drawing.Size(136, 23);
+            this.btnBuscarTodosJira.TabIndex = 8;
+            this.btnBuscarTodosJira.Text = "Buscar Todos En Jira";
+            this.btnBuscarTodosJira.UseVisualStyleBackColor = true;
+            this.btnBuscarTodosJira.Click += new System.EventHandler(this.btnBuscarTodosJira_Click);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dgvHorasxMantis);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.panel1);
+            this.splitContainer2.Panel2.Controls.Add(this.dgvHorasxJira);
+            this.splitContainer2.Size = new System.Drawing.Size(548, 427);
+            this.splitContainer2.SplitterDistance = 271;
+            this.splitContainer2.TabIndex = 9;
             // 
             // Form1
             // 
@@ -240,10 +298,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxFecha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleMantis)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -265,6 +332,9 @@
         private System.Windows.Forms.Button btnBuscarTodosJira;
         private System.Windows.Forms.Button btnIrAJira;
         private System.Windows.Forms.Button btnIrAMantis;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dgvDetalleMantis;
+        private System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
 
