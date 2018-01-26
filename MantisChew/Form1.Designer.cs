@@ -46,6 +46,10 @@
             this.btnIrAJira = new System.Windows.Forms.Button();
             this.btnBuscarTodosJira = new System.Windows.Forms.Button();
             this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.btnCargarDiferenciaEnJira = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,6 +66,7 @@
             this.splitContainer2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -119,7 +124,7 @@
             this.dgvHorasxMantis.Name = "dgvHorasxMantis";
             this.dgvHorasxMantis.ReadOnly = true;
             this.dgvHorasxMantis.RowHeadersVisible = false;
-            this.dgvHorasxMantis.Size = new System.Drawing.Size(548, 271);
+            this.dgvHorasxMantis.Size = new System.Drawing.Size(560, 268);
             this.dgvHorasxMantis.TabIndex = 6;
             this.dgvHorasxMantis.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvHorasxMantis_RowPrePaint);
             this.dgvHorasxMantis.SelectionChanged += new System.EventHandler(this.dgvHorasxMantis_SelectionChanged);
@@ -131,10 +136,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(162, 12);
+            this.tabControl1.Location = new System.Drawing.Point(162, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(562, 459);
+            this.tabControl1.Size = new System.Drawing.Size(574, 455);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -202,7 +207,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(554, 433);
+            this.tabPage2.Size = new System.Drawing.Size(566, 429);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Horas x Mantis";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -222,19 +227,20 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
             this.splitContainer2.Panel2.Controls.Add(this.dgvHorasxJira);
-            this.splitContainer2.Size = new System.Drawing.Size(548, 427);
-            this.splitContainer2.SplitterDistance = 271;
+            this.splitContainer2.Size = new System.Drawing.Size(560, 423);
+            this.splitContainer2.SplitterDistance = 268;
             this.splitContainer2.TabIndex = 9;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCargarDiferenciaEnJira);
             this.panel1.Controls.Add(this.btnIrAMantis);
             this.panel1.Controls.Add(this.btnIrAJira);
             this.panel1.Controls.Add(this.btnBuscarTodosJira);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(548, 31);
+            this.panel1.Size = new System.Drawing.Size(560, 31);
             this.panel1.TabIndex = 7;
             // 
             // btnIrAMantis
@@ -282,14 +288,51 @@
             this.dgvHorasxJira.ReadOnly = true;
             this.dgvHorasxJira.RowHeadersVisible = false;
             this.dgvHorasxJira.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHorasxJira.Size = new System.Drawing.Size(548, 121);
+            this.dgvHorasxJira.Size = new System.Drawing.Size(560, 120);
             this.dgvHorasxJira.TabIndex = 8;
+            this.dgvHorasxJira.SelectionChanged += new System.EventHandler(this.dgvHorasxJira_SelectionChanged);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripProgressBar1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 461);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(736, 22);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.AutoSize = false;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(619, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // btnCargarDiferenciaEnJira
+            // 
+            this.btnCargarDiferenciaEnJira.Location = new System.Drawing.Point(172, 4);
+            this.btnCargarDiferenciaEnJira.Name = "btnCargarDiferenciaEnJira";
+            this.btnCargarDiferenciaEnJira.Size = new System.Drawing.Size(124, 23);
+            this.btnCargarDiferenciaEnJira.TabIndex = 11;
+            this.btnCargarDiferenciaEnJira.Text = "Cargar horas en Jira";
+            this.btnCargarDiferenciaEnJira.UseVisualStyleBackColor = true;
+            this.btnCargarDiferenciaEnJira.Click += new System.EventHandler(this.btnCargarDiferenciaEnJira_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 483);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnEquipo);
             this.Controls.Add(this.btnRefrescarDias);
@@ -313,7 +356,10 @@
             this.splitContainer2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -337,6 +383,10 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dgvDetalleMantis;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Button btnCargarDiferenciaEnJira;
     }
 }
 

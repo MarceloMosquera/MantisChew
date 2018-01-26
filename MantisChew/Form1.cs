@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Jira.SDK;
 using Jira.SDK.Domain;
+using System.Net.Http;
 
 namespace MantisChew
 {
@@ -29,12 +30,27 @@ namespace MantisChew
         private string MantisUrl = "";
 
 
+        enum HorasxMantisColunms
+        {
+            Nro,
+            Mantis,
+            Total
+        }
+        enum HorasxJiraColunms
+        {
+            Nro,
+            Summary,
+            Hrs,
+            Asignado,
+            Estado
+        }
         public Form1()
         {
             InitializeComponent();
             CargarEquipo();
             ConectarJira();
             this.MantisUrl = Properties.Settings.Default.MantisUrl;
+            this.toolStripStatusLabel1.Text = "";
         }
 
         private void CargarEquipo()
@@ -215,8 +231,10 @@ namespace MantisChew
                 row["Hrs"] = issue.TimeTracking.TimeSpentSeconds / 60 / 60;
                 row["Asignado"] = issue.Assignee?.Name;
                 row["Estado"] = issue.Status.Name;
+
                 dtHorasxJira.Rows.Add(row);
             }
+            JirasBuscados.Remove(mantis);
             JirasBuscados.Add(mantis, dtHorasxJira); 
             return dtHorasxJira;
         }
@@ -296,7 +314,7 @@ namespace MantisChew
 
         private void btnBuscarEnJira_Click(object sender, EventArgs e)
         {
-            if(dgvHorasxMantis.SelectedCells.Count > 0)
+            if (dgvHorasxMantis.SelectedCells.Count > 0)
             {
                 var mantis = (int)dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value;
                 CargarDGVHorasxJira(mantis);
@@ -305,11 +323,21 @@ namespace MantisChew
 
         private void btnBuscarTodosJira_Click(object sender, EventArgs e)
         {
+            toolStripStatusLabel1.Text = "Buscando en Jira";
+            toolStripProgressBar1.Value = 0;
+            toolStripProgressBar1.Maximum = dtHorasxMantis.Rows.Count;
             foreach (DataRow row in dtHorasxMantis.Rows)
             {
                 var mantis = (int)row[0];
+
+                toolStripProgressBar1.Value++;
+                toolStripStatusLabel1.Text = $"Buscando en Jira el mantis: {mantis}";
+                Refresh();
+
                 CargarDGVHorasxJira(mantis);
             }
+            toolStripStatusLabel1.Text = "";
+            toolStripProgressBar1.Value = 0;
         }
 
         private void btnIrAJira_Click(object sender, EventArgs e)
@@ -353,6 +381,66 @@ namespace MantisChew
 
                 //dgvDetalleMantis.DataBindings
             }
+        }
+
+      
+        private int CalcularDiferenciaHoraria()
+        {
+            int result = 0;
+            if (estanGrillasSeleccionadas() )
+            {
+                int hsMantis = GetSelectedInt(dgvHorasxMantis, (int)HorasxMantisColunms.Total);
+
+                int hsJira = GetSelectedInt(dgvHorasxJira, (int)HorasxJiraColunms.Hrs);
+
+                result = hsMantis - hsJira;
+            }
+            return result;
+        }
+
+        private bool estanGrillasSeleccionadas()
+        {
+            return (dgvHorasxMantis.SelectedCells.Count > 0) && (dgvHorasxJira.SelectedCells.Count > 0);
+        }
+
+        private void dgvHorasxJira_SelectionChanged(object sender, EventArgs e)
+        {
+            var diff = CalcularDiferenciaHoraria();
+            btnCargarDiferenciaEnJira.Enabled = diff > 0;
+            btnCargarDiferenciaEnJira.Text = $"Cargar {diff} hrs en Jira";
+        }
+
+        private void btnCargarDiferenciaEnJira_Click(object sender, EventArgs e)
+        {
+            var diff = CalcularDiferenciaHoraria();
+            if (MessageBox.Show($"Cargar {diff} hrs en Jira?", "Cargar en Jira", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var jiraKey = GetSelectedString(dgvHorasxJira, (int)HorasxJiraColunms.Nro);
+                var crearResponse = WorkLog.Crear(jiraKey, diff);
+                if (crearResponse.StatusCode == HttpStatusCode.Created)
+                {
+                    MessageBox.Show("Creado");
+                    int mantis = GetSelectedInt(dgvHorasxMantis, (int)HorasxMantisColunms.Nro);
+
+                    dgvHorasxJira.DataSource = CargarHorasxJira(CrearDTHorasxJira(), mantis);
+                    dgvHorasxJira.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show(crearResponse.ToString());
+                }
+            }
+        }
+
+        private string GetSelectedString(DataGridView dgv, int col)
+        {
+            return (string)dgv.Rows[dgv.SelectedCells[0].RowIndex].Cells[col].Value;
+        }
+        private int GetSelectedInt(DataGridView dgv, int col)
+        {
+            int value = 0;
+            int.TryParse(dgv.Rows[dgv.SelectedCells[0].RowIndex].Cells[col].Value.ToString(), out value);
+            return value;
         }
     }
 }
