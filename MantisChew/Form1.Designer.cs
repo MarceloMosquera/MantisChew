@@ -40,12 +40,12 @@
             this.dgvHorasxFecha = new System.Windows.Forms.DataGridView();
             this.dgvDetalleMantis = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnIrAMantis = new System.Windows.Forms.Button();
             this.btnIrAJira = new System.Windows.Forms.Button();
             this.btnBuscarTodosJira = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -56,12 +56,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxFecha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleMantis)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -207,21 +207,24 @@
             this.tabPage2.Text = "Horas x Mantis";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dgvHorasxJira
+            // splitContainer2
             // 
-            this.dgvHorasxJira.AllowUserToAddRows = false;
-            this.dgvHorasxJira.AllowUserToDeleteRows = false;
-            this.dgvHorasxJira.AllowUserToOrderColumns = true;
-            this.dgvHorasxJira.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dgvHorasxJira.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHorasxJira.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvHorasxJira.Location = new System.Drawing.Point(0, 0);
-            this.dgvHorasxJira.Name = "dgvHorasxJira";
-            this.dgvHorasxJira.ReadOnly = true;
-            this.dgvHorasxJira.RowHeadersVisible = false;
-            this.dgvHorasxJira.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHorasxJira.Size = new System.Drawing.Size(548, 152);
-            this.dgvHorasxJira.TabIndex = 8;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dgvHorasxMantis);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.panel1);
+            this.splitContainer2.Panel2.Controls.Add(this.dgvHorasxJira);
+            this.splitContainer2.Size = new System.Drawing.Size(548, 427);
+            this.splitContainer2.SplitterDistance = 271;
+            this.splitContainer2.TabIndex = 9;
             // 
             // panel1
             // 
@@ -264,24 +267,23 @@
             this.btnBuscarTodosJira.UseVisualStyleBackColor = true;
             this.btnBuscarTodosJira.Click += new System.EventHandler(this.btnBuscarTodosJira_Click);
             // 
-            // splitContainer2
+            // dgvHorasxJira
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.dgvHorasxMantis);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.panel1);
-            this.splitContainer2.Panel2.Controls.Add(this.dgvHorasxJira);
-            this.splitContainer2.Size = new System.Drawing.Size(548, 427);
-            this.splitContainer2.SplitterDistance = 271;
-            this.splitContainer2.TabIndex = 9;
+            this.dgvHorasxJira.AllowUserToAddRows = false;
+            this.dgvHorasxJira.AllowUserToDeleteRows = false;
+            this.dgvHorasxJira.AllowUserToOrderColumns = true;
+            this.dgvHorasxJira.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvHorasxJira.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.dgvHorasxJira.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHorasxJira.Location = new System.Drawing.Point(0, 34);
+            this.dgvHorasxJira.Name = "dgvHorasxJira";
+            this.dgvHorasxJira.ReadOnly = true;
+            this.dgvHorasxJira.RowHeadersVisible = false;
+            this.dgvHorasxJira.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvHorasxJira.Size = new System.Drawing.Size(548, 121);
+            this.dgvHorasxJira.TabIndex = 8;
             // 
             // Form1
             // 
@@ -305,12 +307,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxFecha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleMantis)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).EndInit();
             this.ResumeLayout(false);
 
         }
