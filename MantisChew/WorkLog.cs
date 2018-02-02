@@ -9,7 +9,7 @@ namespace MantisChew
 {
     public class WorkLog
     {
-        public static HttpResponseMessage Crear(string key, int hours)
+        public static HttpResponseMessage Crear(string key, decimal hours)
         {
             string date = DateTime.Now.ToString("yyyy-MM-dd")+ "T12:00:00.000-0300";
             string timeSpentSeconds = (hours * 60 * 60).ToString();

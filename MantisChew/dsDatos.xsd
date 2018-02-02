@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsDatos" targetNamespace="http://tempuri.org/dsDatos.xsd" xmlns:mstns="http://tempuri.org/dsDatos.xsd" xmlns="http://tempuri.org/dsDatos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsDatos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsDatos" msprop:Generator_UserDSName="dsDatos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Mantis" msprop:Generator_TableClassName="MantisDataTable" msprop:Generator_TableVarName="tableMantis" msprop:Generator_TablePropName="Mantis" msprop:Generator_RowDeletingName="MantisRowDeleting" msprop:Generator_RowChangingName="MantisRowChanging" msprop:Generator_RowEvHandlerName="MantisRowChangeEventHandler" msprop:Generator_RowDeletedName="MantisRowDeleted" msprop:Generator_UserTableName="Mantis" msprop:Generator_RowChangedName="MantisRowChanged" msprop:Generator_RowEvArgName="MantisRowChangeEvent" msprop:Generator_RowClassName="MantisRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nro" msprop:Generator_ColumnVarNameInTable="columnNro" msprop:Generator_ColumnPropNameInRow="Nro" msprop:Generator_ColumnPropNameInTable="NroColumn" msprop:Generator_UserColumnName="Nro" type="xs:int" minOccurs="0" />
+              <xs:element name="Mantis" msprop:Generator_ColumnVarNameInTable="columnMantis" msprop:Generator_ColumnPropNameInRow="Mantis" msprop:Generator_ColumnPropNameInTable="MantisColumn" msprop:Generator_UserColumnName="Mantis" type="xs:string" minOccurs="0" />
+              <xs:element name="HrsMantis" msprop:Generator_ColumnVarNameInTable="columnHrsMantis" msprop:Generator_ColumnPropNameInRow="HrsMantis" msprop:Generator_ColumnPropNameInTable="HrsMantisColumn" msprop:Generator_UserColumnName="HrsMantis" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HrsJira" msprop:Generator_ColumnVarNameInTable="columnHrsJira" msprop:Generator_ColumnPropNameInRow="HrsJira" msprop:Generator_ColumnPropNameInTable="HrsJiraColumn" msprop:Generator_UserColumnName="HrsJira" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Diferencia" msprop:Generator_ColumnVarNameInTable="columnDiferencia" msprop:Generator_ColumnPropNameInRow="Diferencia" msprop:Generator_ColumnPropNameInTable="DiferenciaColumn" msprop:Generator_UserColumnName="Diferencia" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Jiras" msprop:Generator_TableClassName="JirasDataTable" msprop:Generator_TableVarName="tableJiras" msprop:Generator_TablePropName="Jiras" msprop:Generator_RowDeletingName="JirasRowDeleting" msprop:Generator_RowChangingName="JirasRowChanging" msprop:Generator_RowEvHandlerName="JirasRowChangeEventHandler" msprop:Generator_RowDeletedName="JirasRowDeleted" msprop:Generator_UserTableName="Jiras" msprop:Generator_RowChangedName="JirasRowChanged" msprop:Generator_RowEvArgName="JirasRowChangeEvent" msprop:Generator_RowClassName="JirasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nro" msprop:Generator_ColumnVarNameInTable="columnNro" msprop:Generator_ColumnPropNameInRow="Nro" msprop:Generator_ColumnPropNameInTable="NroColumn" msprop:Generator_UserColumnName="Nro" type="xs:string" minOccurs="0" />
+              <xs:element name="Summary" msprop:Generator_ColumnVarNameInTable="columnSummary" msprop:Generator_ColumnPropNameInRow="Summary" msprop:Generator_ColumnPropNameInTable="SummaryColumn" msprop:Generator_UserColumnName="Summary" type="xs:string" minOccurs="0" />
+              <xs:element name="Hrs" msprop:Generator_ColumnVarNameInTable="columnHrs" msprop:Generator_ColumnPropNameInRow="Hrs" msprop:Generator_ColumnPropNameInTable="HrsColumn" msprop:Generator_UserColumnName="Hrs" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Asignado" msprop:Generator_ColumnVarNameInTable="columnAsignado" msprop:Generator_ColumnPropNameInRow="Asignado" msprop:Generator_ColumnPropNameInTable="AsignadoColumn" msprop:Generator_UserColumnName="Asignado" type="xs:string" minOccurs="0" />
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" type="xs:string" minOccurs="0" />
+              <xs:element name="NroMantis" msprop:Generator_ColumnVarNameInTable="columnNroMantis" msprop:Generator_ColumnPropNameInRow="NroMantis" msprop:Generator_ColumnPropNameInTable="NroMantisColumn" msprop:Generator_UserColumnName="NroMantis" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="MantisKey1">
+      <xs:selector xpath=".//mstns:Mantis" />
+      <xs:field xpath="mstns:Nro" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Mantis_Jiras" msdata:parent="Mantis" msdata:child="Jiras" msdata:parentkey="Nro" msdata:childkey="NroMantis" msprop:Generator_UserChildTable="Jiras" msprop:Generator_ChildPropName="GetJirasRows" msprop:Generator_UserRelationName="Mantis_Jiras" msprop:Generator_ParentPropName="MantisRow" msprop:Generator_RelationVarName="relationMantis_Jiras" msprop:Generator_UserParentTable="Mantis" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

@@ -88,6 +88,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dsDatos.cs">
+      <DependentUpon>dsDatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsDatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsDatos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Equipo.cs" />
     <Compile Include="FileParser.cs" />
     <Compile Include="Form1.cs">
@@ -112,6 +120,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="dsDatos.xsc">
+      <DependentUpon>dsDatos.xsd</DependentUpon>
+    </None>
+    <None Include="dsDatos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsDatos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsDatos.xss">
+      <DependentUpon>dsDatos.xsd</DependentUpon>
+    </None>
     <None Include="MantisChew_ClaveTemporal.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -17,33 +17,20 @@ namespace MantisChew
     public partial class Form1 : Form
     {
 
+        private dsDatos Datos = new dsDatos();
         private List<TimeTrack> DatosArchivo = new List<TimeTrack>();
         private DataTable dtHorasxFecha = new DataTable();
-        private DataTable dtHorasxMantis = new DataTable();
         private Equipo EquipoActivo = new Equipo();
 
-        private Dictionary<int, DataTable> JirasBuscados = new Dictionary<int, DataTable>();
+        //private Dictionary<int, DataTable> JirasBuscados = new Dictionary<int, DataTable>();
 
         private Jira.SDK.Jira jira = new Jira.SDK.Jira();
 
         private string JiraUrl = "";
         private string MantisUrl = "";
 
+        #region "StartUp"
 
-        enum HorasxMantisColunms
-        {
-            Nro,
-            Mantis,
-            Total
-        }
-        enum HorasxJiraColunms
-        {
-            Nro,
-            Summary,
-            Hrs,
-            Asignado,
-            Estado
-        }
         public Form1()
         {
             InitializeComponent();
@@ -78,6 +65,9 @@ namespace MantisChew
                 MessageBox.Show("No se pudo conectar a Jira" + e.Message);
             }
         }
+
+        #endregion
+        #region "Horas x Fecha"
 
         private void CargarDGVHorasxFecha()
         {
@@ -133,14 +123,22 @@ namespace MantisChew
                 dtHorasxFecha.Rows.Add(row);
             }
         }
+        private void dgvHorasxFecha_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex >= 1 && (e.Value.ToString() != "8"))
+            {
+                dgvHorasxFecha.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Coral;
+            }
+        }
 
+        #endregion
 
         private void CargarDGVHorasxMantis()
         {
             CrearDTHorasxMantis();
             CargarHorasxMantis();
 
-            dgvHorasxMantis.DataSource = dtHorasxMantis;
+            dgvHorasxMantis.DataSource = Datos.Mantis;
             dgvHorasxMantis.Refresh();
         }
 
@@ -148,15 +146,10 @@ namespace MantisChew
         {
             var usuarios = new List<string>();
             foreach (var chkUsuario in clstUsuarios.CheckedItems)
+            {
                 usuarios.Add(chkUsuario.ToString());
-
-            dtHorasxMantis = new DataTable();
-            dtHorasxMantis.Columns.Add(new DataColumn("Nro", typeof(int)));
-            dtHorasxMantis.Columns.Add(new DataColumn("Mantis", typeof(string)));
-            dtHorasxMantis.Columns.Add(new DataColumn("Total", typeof(decimal)));
-            foreach (var chkUsuario in clstUsuarios.CheckedItems)
-                dtHorasxMantis.Columns.Add(new DataColumn(chkUsuario.ToString(), typeof(decimal)));
-
+                Datos.Mantis.Columns.Add(new DataColumn(chkUsuario.ToString(), typeof(decimal)));
+            }
         }
 
         private void CargarHorasxMantis()
@@ -171,9 +164,9 @@ namespace MantisChew
                     .Distinct();
             foreach (var mnt in mantis)
             {
-                var row = dtHorasxMantis.NewRow();
-                row["Nro"] = mnt.Mantis;
-                row["Mantis"] = mnt.Descripcion;
+                var row = Datos.Mantis.NewMantisRow();
+                row.Nro = mnt.Mantis;
+                row.Mantis = mnt.Descripcion;
 
                 var datosMantis = DatosArchivo.Where(tt => tt.Mantis == mnt.Mantis)
                     .GroupBy(l => l.Usuario)
@@ -191,52 +184,33 @@ namespace MantisChew
                         total += datoMantis.SumHrs;
                     } catch (Exception) { }
                 }
-                row["Total"] = total.ToString();
-                dtHorasxMantis.Rows.Add(row);
+                row.HrsMantis = total;
+                Datos.Mantis.Rows.Add(row);
             }
 
            
         }
         private void CargarDGVHorasxJira(int mantis)
         {
-            dgvHorasxJira.DataSource = JirasBuscados.ContainsKey(mantis) ?
-                        JirasBuscados[mantis] :
-                        CargarHorasxJira(CrearDTHorasxJira(), mantis);
+            dgvHorasxJira.DataSource = Datos.Jiras;
+            Datos.Jiras.DefaultView.RowFilter = string.Format("NroMantis = '{0}'", mantis);
             dgvHorasxJira.Refresh();
         }
 
-        private DataTable CrearDTHorasxJira()
-        {
-            var usuarios = new List<string>();
-            foreach (var chkUsuario in clstUsuarios.CheckedItems)
-                usuarios.Add(chkUsuario.ToString());
-
-            var dtHorasxJira = new DataTable();
-            dtHorasxJira.Columns.Add(new DataColumn("Nro", typeof(string)));
-            dtHorasxJira.Columns.Add(new DataColumn("Summary", typeof(string)));
-            dtHorasxJira.Columns.Add(new DataColumn("Hrs", typeof(decimal)));
-            dtHorasxJira.Columns.Add(new DataColumn("Asignado", typeof(string)));
-            dtHorasxJira.Columns.Add(new DataColumn("Estado", typeof(string)));
-            return dtHorasxJira;
-        }
-
-        private DataTable CargarHorasxJira(DataTable dtHorasxJira, int mantis)
+        private void CargarHorasxJira( int mantis)
         {
             List<Issue> issues = BuscarEnJira(mantis);
             foreach (var issue in issues)
             {
-                var row = dtHorasxJira.NewRow();
-                row["Nro"] = issue.Key;
-                row["Summary"] = issue.Summary;
-                row["Hrs"] = issue.TimeTracking.TimeSpentSeconds / 60 / 60;
-                row["Asignado"] = issue.Assignee?.Name;
-                row["Estado"] = issue.Status.Name;
-
-                dtHorasxJira.Rows.Add(row);
+                var row = Datos.Jiras.NewJirasRow();
+                row.Nro = issue.Key;
+                row.Summary = issue.Summary;
+                row.Hrs = issue.TimeTracking.TimeSpentSeconds / 60 / 60;
+                row.Asignado = issue.Assignee?.Name;
+                row.Estado = issue.Status.Name;
+                row.NroMantis = mantis;
+                Datos.Jiras.AddJirasRow(row);
             }
-            JirasBuscados.Remove(mantis);
-            JirasBuscados.Add(mantis, dtHorasxJira); 
-            return dtHorasxJira;
         }
 
         private List<Issue> BuscarEnJira(int mantis)
@@ -278,6 +252,9 @@ namespace MantisChew
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                Datos = new dsDatos();
+                //JirasBuscados = new Dictionary<int, DataTable>();
+                DatosArchivo = new List<TimeTrack>();
                 DatosArchivo = FileParser.Parse(openFileDialog1.FileName);
                 CargarUsuarios();
                 btnEquipo_Click(sender, e);
@@ -296,27 +273,45 @@ namespace MantisChew
             CargarDGVHorasxMantis();
         }
 
-        private void dgvHorasxFecha_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.ColumnIndex >= 1 && (e.Value.ToString() != "8"))
-            {
-                dgvHorasxFecha.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Coral;
-            }
-        }
 
         private void dgvHorasxMantis_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            var mantis = (int)dgvHorasxMantis.Rows[e.RowIndex].Cells[0].Value;
+            var mantis = GetMantis(e.RowIndex);
             if (EquipoActivo.MantisInternos.Contains(mantis))
                 dgvHorasxMantis.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;
-            
+
+        }
+        private void dgvHorasxMantis_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var mantis = GetMantis(e.RowIndex);
+            if (!EquipoActivo.MantisInternos.Contains(mantis))
+            {
+                //dgvHorasxMantis.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;
+
+                if (dgvHorasxMantis.Columns[e.ColumnIndex].Name == "HrsJira")
+                    if (e.Value == DBNull.Value)
+                        dgvHorasxMantis.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Coral;
+                    else
+                        dgvHorasxMantis.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
+
+                if ((dgvHorasxMantis.Columns[e.ColumnIndex].Name == "Diferencia") && (e.Value != DBNull.Value))
+                {
+                    var val = (decimal)e.Value;
+                    if (val > 0)
+                        dgvHorasxMantis.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Coral;
+                    else if (val < 0)
+                        dgvHorasxMantis.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Gold;
+                    else
+                        dgvHorasxMantis.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
+                }
+            }
         }
 
         private void btnBuscarEnJira_Click(object sender, EventArgs e)
         {
             if (dgvHorasxMantis.SelectedCells.Count > 0)
             {
-                var mantis = (int)dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value;
+                var mantis = GetMantis(null);
                 CargarDGVHorasxJira(mantis);
             }
         }
@@ -325,17 +320,25 @@ namespace MantisChew
         {
             toolStripStatusLabel1.Text = "Buscando en Jira";
             toolStripProgressBar1.Value = 0;
-            toolStripProgressBar1.Maximum = dtHorasxMantis.Rows.Count;
-            foreach (DataRow row in dtHorasxMantis.Rows)
+            toolStripProgressBar1.Maximum = Datos.Mantis.Rows.Count;
+            for (int i = 0; i < Datos.Mantis.Rows.Count; i++)
             {
-                var mantis = (int)row[0];
+                var mantis = GetMantis(i);
 
                 toolStripProgressBar1.Value++;
                 toolStripStatusLabel1.Text = $"Buscando en Jira el mantis: {mantis}";
                 Refresh();
 
-                CargarDGVHorasxJira(mantis);
+                CargarHorasxJira(mantis);
+                var unJira = Datos.Jiras.FirstOrDefault(j => j.NroMantis == mantis);
+                if (unJira != null)
+                {
+                    var mantisRow = Datos.Mantis.First(m => m.Nro == mantis);
+                    mantisRow.HrsJira = unJira.Hrs;
+                    mantisRow.Diferencia = mantisRow.HrsMantis - mantisRow.HrsJira;
+                }
             }
+
             toolStripStatusLabel1.Text = "";
             toolStripProgressBar1.Value = 0;
         }
@@ -352,9 +355,9 @@ namespace MantisChew
 
         private void dgvHorasxMantis_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvHorasxMantis.SelectedCells.Count > 0 && JirasBuscados.Count > 0)
+            if (dgvHorasxMantis.SelectedCells.Count > 0)
             {
-                var mantis = (int)dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value;
+                var mantis = GetMantis(null);
                 CargarDGVHorasxJira(mantis);
             }
         }
@@ -363,9 +366,9 @@ namespace MantisChew
         {
             if (dgvHorasxMantis.SelectedCells.Count > 0)
             {
-                var mantis = dgvHorasxMantis.Rows[dgvHorasxMantis.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+                var mantis = GetMantis(null);
                 System.Diagnostics.Process.Start(
-                    this.MantisUrl + mantis);
+                    this.MantisUrl + mantis.ToString());
             }
         }
 
@@ -379,19 +382,18 @@ namespace MantisChew
                 dgvDetalleMantis.DataSource = CargarDetalleMantis(CrearDTDetalleMantis(), usuario, fecha);
                 dgvDetalleMantis.Refresh();
 
-                //dgvDetalleMantis.DataBindings
             }
         }
 
       
-        private int CalcularDiferenciaHoraria()
+        private decimal CalcularDiferenciaHoraria()
         {
-            int result = 0;
+            decimal result = 0;
             if (estanGrillasSeleccionadas() )
             {
-                int hsMantis = GetSelectedInt(dgvHorasxMantis, (int)HorasxMantisColunms.Total);
+                decimal hsMantis = GetMantisRow(null).HrsMantis;
 
-                int hsJira = GetSelectedInt(dgvHorasxJira, (int)HorasxJiraColunms.Hrs);
+                decimal hsJira = GetJiraRow(null).Hrs;
 
                 result = hsMantis - hsJira;
             }
@@ -408,6 +410,8 @@ namespace MantisChew
             var diff = CalcularDiferenciaHoraria();
             btnCargarDiferenciaEnJira.Enabled = diff > 0;
             btnCargarDiferenciaEnJira.Text = $"Cargar {diff} hrs en Jira";
+
+            GetMantisRow(null).Diferencia = diff;
         }
 
         private void btnCargarDiferenciaEnJira_Click(object sender, EventArgs e)
@@ -415,14 +419,21 @@ namespace MantisChew
             var diff = CalcularDiferenciaHoraria();
             if (MessageBox.Show($"Cargar {diff} hrs en Jira?", "Cargar en Jira", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var jiraKey = GetSelectedString(dgvHorasxJira, (int)HorasxJiraColunms.Nro);
+                var jiraKey = GetJiraRow(null).Nro;//GetSelectedString(dgvHorasxJira, (int)HorasxJiraColunms.Nro);
+
                 var crearResponse = WorkLog.Crear(jiraKey, diff);
                 if (crearResponse.StatusCode == HttpStatusCode.Created)
                 {
                     MessageBox.Show("Creado");
-                    int mantis = GetSelectedInt(dgvHorasxMantis, (int)HorasxMantisColunms.Nro);
-
-                    dgvHorasxJira.DataSource = CargarHorasxJira(CrearDTHorasxJira(), mantis);
+                    var mantis = GetMantis(null);
+                    CargarHorasxJira(mantis);
+                    var unJira = Datos.Jiras.FirstOrDefault(j => j.NroMantis == mantis);
+                    if (unJira != null)
+                    {
+                        var mantisRow = Datos.Mantis.First(m => m.Nro == mantis);
+                        mantisRow.HrsJira = unJira.Hrs;
+                        mantisRow.Diferencia = mantisRow.HrsMantis - mantisRow.HrsJira;
+                    }
                     dgvHorasxJira.Refresh();
                 }
                 else
@@ -442,6 +453,25 @@ namespace MantisChew
             int.TryParse(dgv.Rows[dgv.SelectedCells[0].RowIndex].Cells[col].Value.ToString(), out value);
             return value;
         }
+
+        private int GetMantis(int? rowIndex)
+        {
+            dsDatos.MantisRow row = GetMantisRow(rowIndex);
+            return row.Nro;
+        }
+
+        private dsDatos.MantisRow GetMantisRow(int? rowIndex)
+        {
+            DataRowView currentDataRowView = (DataRowView)dgvHorasxMantis.Rows[rowIndex ?? dgvHorasxMantis.SelectedCells[0].RowIndex].DataBoundItem;
+            return (dsDatos.MantisRow)currentDataRowView.Row;
+        }
+        private dsDatos.JirasRow GetJiraRow(int? rowIndex)
+        {
+            DataRowView currentDataRowView = (DataRowView)dgvHorasxJira.Rows[rowIndex ?? dgvHorasxJira.SelectedCells[0].RowIndex].DataBoundItem;
+            return (dsDatos.JirasRow)currentDataRowView.Row;
+        }
+
+
     }
 }
  
