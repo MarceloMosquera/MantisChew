@@ -17,8 +17,20 @@
     <Setting Name="MantisInternos" Type="System.String" Scope="User">
       <Value Profile="(Default)">24452|24188|24453|24612|24620</Value>
     </Setting>
-    <Setting Name="MantisUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://mantis.cencosud.corp/it/view.php?id=</Value>
+    <Setting Name="MantisUrlBase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mantis.cencosud.corp</Value>
+    </Setting>
+    <Setting Name="MantisUrlView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/it/view.php?id=</Value>
+    </Setting>
+    <Setting Name="MantisUrlLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/it/login.php</Value>
+    </Setting>
+    <Setting Name="MantisUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MantisPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

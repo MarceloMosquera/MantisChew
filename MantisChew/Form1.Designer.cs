@@ -47,9 +47,15 @@
             this.btnIrAJira = new System.Windows.Forms.Button();
             this.btnBuscarTodosJira = new System.Windows.Forms.Button();
             this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.btnCargarMantisInfo = new System.Windows.Forms.Button();
+            this.dgvMantisEstado = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.dgvEstadoAgrupado = new System.Windows.Forms.DataGridView();
+            this.btnLoginMantis = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -66,7 +72,14 @@
             this.splitContainer2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMantisEstado)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstadoAgrupado)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -137,6 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(162, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -303,6 +317,64 @@
             this.dgvHorasxJira.TabIndex = 8;
             this.dgvHorasxJira.SelectionChanged += new System.EventHandler(this.dgvHorasxJira_SelectionChanged);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.splitContainer3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(566, 429);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Estado Mantis";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.btnLoginMantis);
+            this.splitContainer3.Panel1.Controls.Add(this.btnCargarMantisInfo);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.dgvEstadoAgrupado);
+            this.splitContainer3.Panel2.Controls.Add(this.dgvMantisEstado);
+            this.splitContainer3.Size = new System.Drawing.Size(560, 423);
+            this.splitContainer3.SplitterDistance = 32;
+            this.splitContainer3.TabIndex = 6;
+            // 
+            // btnCargarMantisInfo
+            // 
+            this.btnCargarMantisInfo.Location = new System.Drawing.Point(3, 3);
+            this.btnCargarMantisInfo.Name = "btnCargarMantisInfo";
+            this.btnCargarMantisInfo.Size = new System.Drawing.Size(114, 23);
+            this.btnCargarMantisInfo.TabIndex = 10;
+            this.btnCargarMantisInfo.Text = "Cargar Datos";
+            this.btnCargarMantisInfo.UseVisualStyleBackColor = true;
+            this.btnCargarMantisInfo.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dgvMantisEstado
+            // 
+            this.dgvMantisEstado.AllowUserToAddRows = false;
+            this.dgvMantisEstado.AllowUserToDeleteRows = false;
+            this.dgvMantisEstado.AllowUserToOrderColumns = true;
+            this.dgvMantisEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvMantisEstado.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.dgvMantisEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMantisEstado.Location = new System.Drawing.Point(0, 0);
+            this.dgvMantisEstado.Name = "dgvMantisEstado";
+            this.dgvMantisEstado.ReadOnly = true;
+            this.dgvMantisEstado.RowHeadersVisible = false;
+            this.dgvMantisEstado.Size = new System.Drawing.Size(560, 298);
+            this.dgvMantisEstado.TabIndex = 5;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -327,6 +399,32 @@
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // dgvEstadoAgrupado
+            // 
+            this.dgvEstadoAgrupado.AllowUserToAddRows = false;
+            this.dgvEstadoAgrupado.AllowUserToDeleteRows = false;
+            this.dgvEstadoAgrupado.AllowUserToOrderColumns = true;
+            this.dgvEstadoAgrupado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvEstadoAgrupado.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.dgvEstadoAgrupado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEstadoAgrupado.Location = new System.Drawing.Point(0, 303);
+            this.dgvEstadoAgrupado.Name = "dgvEstadoAgrupado";
+            this.dgvEstadoAgrupado.ReadOnly = true;
+            this.dgvEstadoAgrupado.RowHeadersVisible = false;
+            this.dgvEstadoAgrupado.Size = new System.Drawing.Size(560, 84);
+            this.dgvEstadoAgrupado.TabIndex = 6;
+            // 
+            // btnLoginMantis
+            // 
+            this.btnLoginMantis.Location = new System.Drawing.Point(441, 3);
+            this.btnLoginMantis.Name = "btnLoginMantis";
+            this.btnLoginMantis.Size = new System.Drawing.Size(114, 23);
+            this.btnLoginMantis.TabIndex = 11;
+            this.btnLoginMantis.Text = "Login Mantis";
+            this.btnLoginMantis.UseVisualStyleBackColor = true;
+            this.btnLoginMantis.Click += new System.EventHandler(this.btnLoginMantis_Click);
             // 
             // Form1
             // 
@@ -357,8 +455,15 @@
             this.splitContainer2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxJira)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMantisEstado)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstadoAgrupado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,6 +493,12 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.Button btnCargarDiferenciaEnJira;
+        private System.Windows.Forms.Button btnCargarMantisInfo;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dgvMantisEstado;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.DataGridView dgvEstadoAgrupado;
+        private System.Windows.Forms.Button btnLoginMantis;
     }
 }
 

@@ -35,6 +35,18 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="MantisEstado" msprop:Generator_TableClassName="MantisEstadoDataTable" msprop:Generator_TableVarName="tableMantisEstado" msprop:Generator_RowChangedName="MantisEstadoRowChanged" msprop:Generator_TablePropName="MantisEstado" msprop:Generator_RowDeletingName="MantisEstadoRowDeleting" msprop:Generator_RowChangingName="MantisEstadoRowChanging" msprop:Generator_RowEvHandlerName="MantisEstadoRowChangeEventHandler" msprop:Generator_RowDeletedName="MantisEstadoRowDeleted" msprop:Generator_RowClassName="MantisEstadoRow" msprop:Generator_UserTableName="MantisEstado" msprop:Generator_RowEvArgName="MantisEstadoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nro" msprop:Generator_ColumnVarNameInTable="columnNro" msprop:Generator_ColumnPropNameInRow="Nro" msprop:Generator_ColumnPropNameInTable="NroColumn" msprop:Generator_UserColumnName="Nro" type="xs:int" minOccurs="0" />
+              <xs:element name="Proyecto" msprop:Generator_ColumnVarNameInTable="columnProyecto" msprop:Generator_ColumnPropNameInRow="Proyecto" msprop:Generator_ColumnPropNameInTable="ProyectoColumn" msprop:Generator_UserColumnName="Proyecto" type="xs:string" minOccurs="0" />
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Version" msprop:Generator_ColumnVarNameInTable="columnVersion" msprop:Generator_ColumnPropNameInRow="Version" msprop:Generator_ColumnPropNameInTable="VersionColumn" msprop:Generator_UserColumnName="Version" type="xs:string" minOccurs="0" />
+              <xs:element name="HrsTotal" msprop:Generator_ColumnVarNameInTable="columnHrsTotal" msprop:Generator_ColumnPropNameInRow="HrsTotal" msprop:Generator_ColumnPropNameInTable="HrsTotalColumn" msprop:Generator_UserColumnName="HrsTotal" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="MantisKey1">

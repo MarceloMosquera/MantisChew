@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Jira.SDK;
 using Jira.SDK.Domain;
 using System.Net.Http;
+using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace MantisChew
 {
@@ -36,8 +38,9 @@ namespace MantisChew
             InitializeComponent();
             CargarEquipo();
             ConectarJira();
-            this.MantisUrl = Properties.Settings.Default.MantisUrl;
+            this.MantisUrl = Properties.Settings.Default.MantisUrlBase;
             this.toolStripStatusLabel1.Text = "";
+            dgvMantisEstado.DataSource = Datos.MantisEstado;
         }
 
         private void CargarEquipo()
@@ -471,7 +474,76 @@ namespace MantisChew
             return (dsDatos.JirasRow)currentDataRowView.Row;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            if (Properties.Settings.Default.MantisUser == "")
+            {
+                var f = new FrmLogin();
+                if (f.ShowDialog() == DialogResult.Cancel) return;
+                Properties.Settings.Default.MantisUser = f.User;
+                Properties.Settings.Default.MantisPass = f.Pass;
+                Properties.Settings.Default.Save();
+            }
 
+            Datos.MantisEstado.Clear();
+
+            var mantisAProc = Datos.Mantis.Where(m => !EquipoActivo.MantisInternos.Contains(m.Nro)).ToList();
+
+            toolStripStatusLabel1.Text = "Buscando en Mantis";
+            toolStripProgressBar1.Value = 0;
+            toolStripProgressBar1.Maximum = mantisAProc.Count;
+
+            using (var mantisInfo = new MantisInfo())
+            {
+                foreach (var row in mantisAProc)
+                {
+                    toolStripProgressBar1.Value++;
+                    toolStripStatusLabel1.Text = $"Buscando en mantis: {row.Nro}  {toolStripProgressBar1.Value}/{toolStripProgressBar1.Maximum}";
+                    Refresh();
+
+                    var newMantisEstadoRow = Datos.MantisEstado.NewMantisEstadoRow();
+                    newMantisEstadoRow.Nro = row.Nro;
+                    mantisInfo.Download(newMantisEstadoRow);
+                    Datos.MantisEstado.AddMantisEstadoRow(newMantisEstadoRow);
+                }
+            }
+            dgvMantisEstado.DataSource = Datos.MantisEstado;
+            dgvMantisEstado.Refresh();
+
+            CargarDGVEstadoAgrupado();
+
+            toolStripStatusLabel1.Text = "";
+            toolStripProgressBar1.Value = 0;
+
+        }
+
+        private void CargarDGVEstadoAgrupado()
+        {
+            var datos = Datos.MantisEstado
+                .Where(m=> m?.Estado == "entregado")
+                .GroupBy(m => m.Proyecto)
+                .Select(m => new
+                {
+                    Proyecto = m.First().Proyecto,
+                    Mantis = string.Join(", ", m.Select(i => i.Nro)),
+                    Horas = m.Sum(c => int.Parse(c.HrsTotal))
+                })
+                .ToList();
+            dgvEstadoAgrupado.DataSource = datos;
+            dgvEstadoAgrupado.Refresh();
+        }
+
+        private void btnLoginMantis_Click(object sender, EventArgs e)
+        {
+            var f = new FrmLogin();
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.MantisUser = f.User;
+                Properties.Settings.Default.MantisPass = f.Pass;
+                Properties.Settings.Default.Save();
+            }
+        }
     }
 }
  

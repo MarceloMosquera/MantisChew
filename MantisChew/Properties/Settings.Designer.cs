@@ -86,13 +86,61 @@ namespace MantisChew.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://mantis.cencosud.corp/it/view.php?id=")]
-        public string MantisUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://mantis.cencosud.corp")]
+        public string MantisUrlBase {
             get {
-                return ((string)(this["MantisUrl"]));
+                return ((string)(this["MantisUrlBase"]));
             }
             set {
-                this["MantisUrl"] = value;
+                this["MantisUrlBase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/it/view.php?id=")]
+        public string MantisUrlView {
+            get {
+                return ((string)(this["MantisUrlView"]));
+            }
+            set {
+                this["MantisUrlView"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/it/login.php")]
+        public string MantisUrlLogin {
+            get {
+                return ((string)(this["MantisUrlLogin"]));
+            }
+            set {
+                this["MantisUrlLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MantisUser {
+            get {
+                return ((string)(this["MantisUser"]));
+            }
+            set {
+                this["MantisUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MantisPass {
+            get {
+                return ((string)(this["MantisPass"]));
+            }
+            set {
+                this["MantisPass"] = value;
             }
         }
     }
