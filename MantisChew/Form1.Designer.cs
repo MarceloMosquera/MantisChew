@@ -338,14 +338,14 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.Controls.Add(this.btnLoginMantis);
+            this.splitContainer3.Panel1.Controls.Add(this.dgvMantisEstado);
             this.splitContainer3.Panel1.Controls.Add(this.btnCargarMantisInfo);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dgvEstadoAgrupado);
-            this.splitContainer3.Panel2.Controls.Add(this.dgvMantisEstado);
             this.splitContainer3.Size = new System.Drawing.Size(560, 423);
-            this.splitContainer3.SplitterDistance = 32;
+            this.splitContainer3.SplitterDistance = 332;
             this.splitContainer3.TabIndex = 6;
             // 
             // btnCargarMantisInfo
@@ -368,7 +368,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMantisEstado.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvMantisEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMantisEstado.Location = new System.Drawing.Point(0, 0);
+            this.dgvMantisEstado.Location = new System.Drawing.Point(0, 32);
             this.dgvMantisEstado.Name = "dgvMantisEstado";
             this.dgvMantisEstado.ReadOnly = true;
             this.dgvMantisEstado.RowHeadersVisible = false;
@@ -405,15 +405,14 @@
             this.dgvEstadoAgrupado.AllowUserToAddRows = false;
             this.dgvEstadoAgrupado.AllowUserToDeleteRows = false;
             this.dgvEstadoAgrupado.AllowUserToOrderColumns = true;
-            this.dgvEstadoAgrupado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEstadoAgrupado.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvEstadoAgrupado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEstadoAgrupado.Location = new System.Drawing.Point(0, 303);
+            this.dgvEstadoAgrupado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEstadoAgrupado.Location = new System.Drawing.Point(0, 0);
             this.dgvEstadoAgrupado.Name = "dgvEstadoAgrupado";
             this.dgvEstadoAgrupado.ReadOnly = true;
             this.dgvEstadoAgrupado.RowHeadersVisible = false;
-            this.dgvEstadoAgrupado.Size = new System.Drawing.Size(560, 84);
+            this.dgvEstadoAgrupado.Size = new System.Drawing.Size(560, 87);
             this.dgvEstadoAgrupado.TabIndex = 6;
             // 
             // btnLoginMantis
