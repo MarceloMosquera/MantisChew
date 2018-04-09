@@ -14,14 +14,32 @@ namespace MantisChew
             var res = new List<TimeTrack>();
             using (StreamReader streamreader = new StreamReader(file))
             {
-                var discardFirtLine = streamreader.ReadLine();
-                while (streamreader.Peek() > 0)
-                {
-                    var track = ParseLine(streamreader.ReadLine());
-                    if (track != null) res.Add(track);
-                }
+               res = Process(streamreader);
             }
 
+            return res;
+        }
+
+        public static List<TimeTrack> Parse(Stream stream)
+        {
+            var res = new List<TimeTrack>();
+            using (StreamReader streamreader = new StreamReader(stream))
+            {
+                res = Process(streamreader);
+            }
+
+            return res;
+        }
+
+        private static List<TimeTrack> Process( StreamReader streamreader)
+        {
+            var res = new List<TimeTrack>();
+            var discardFirstLine = streamreader.ReadLine();
+            while (streamreader.Peek() > 0)
+            {
+                var track = ParseLine(streamreader.ReadLine());
+                if (track != null) res.Add(track);
+            }
             return res;
         }
 

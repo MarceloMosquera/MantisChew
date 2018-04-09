@@ -49,13 +49,41 @@
             this.dgvHorasxJira = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.btnCargarMantisInfo = new System.Windows.Forms.Button();
+            this.btnLoginMantis = new System.Windows.Forms.Button();
             this.dgvMantisEstado = new System.Windows.Forms.DataGridView();
+            this.btnCargarMantisInfo = new System.Windows.Forms.Button();
+            this.dgvEstadoAgrupado = new System.Windows.Forms.DataGridView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lnkNewJira = new System.Windows.Forms.LinkLabel();
+            this.lblCreateResult = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSummary = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtProjectKey = new System.Windows.Forms.TextBox();
+            this.btnCrearEnJira = new System.Windows.Forms.Button();
+            this.lblDatosJira = new System.Windows.Forms.Label();
+            this.lblDatosMantis = new System.Windows.Forms.Label();
+            this.btnBuscarJira = new System.Windows.Forms.Button();
+            this.btnBuscarMantis = new System.Windows.Forms.Button();
+            this.txtNroMantis = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnGuardarConfig = new System.Windows.Forms.Button();
+            this.btnCargarConfig = new System.Windows.Forms.Button();
+            this.dgvConfig = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.dgvEstadoAgrupado = new System.Windows.Forms.DataGridView();
-            this.btnLoginMantis = new System.Windows.Forms.Button();
+            this.btnBajarTimeReport = new System.Windows.Forms.Button();
+            this.cmbIssueType = new System.Windows.Forms.ComboBox();
+            this.cmbComponent = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.txtLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -78,8 +106,11 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantisEstado)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstadoAgrupado)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConfig)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -151,6 +182,8 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(162, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -348,15 +381,15 @@
             this.splitContainer3.SplitterDistance = 332;
             this.splitContainer3.TabIndex = 6;
             // 
-            // btnCargarMantisInfo
+            // btnLoginMantis
             // 
-            this.btnCargarMantisInfo.Location = new System.Drawing.Point(3, 3);
-            this.btnCargarMantisInfo.Name = "btnCargarMantisInfo";
-            this.btnCargarMantisInfo.Size = new System.Drawing.Size(114, 23);
-            this.btnCargarMantisInfo.TabIndex = 10;
-            this.btnCargarMantisInfo.Text = "Cargar Datos";
-            this.btnCargarMantisInfo.UseVisualStyleBackColor = true;
-            this.btnCargarMantisInfo.Click += new System.EventHandler(this.button1_Click);
+            this.btnLoginMantis.Location = new System.Drawing.Point(441, 3);
+            this.btnLoginMantis.Name = "btnLoginMantis";
+            this.btnLoginMantis.Size = new System.Drawing.Size(114, 23);
+            this.btnLoginMantis.TabIndex = 11;
+            this.btnLoginMantis.Text = "Login Mantis";
+            this.btnLoginMantis.UseVisualStyleBackColor = true;
+            this.btnLoginMantis.Click += new System.EventHandler(this.btnLoginMantis_Click);
             // 
             // dgvMantisEstado
             // 
@@ -374,6 +407,263 @@
             this.dgvMantisEstado.RowHeadersVisible = false;
             this.dgvMantisEstado.Size = new System.Drawing.Size(560, 298);
             this.dgvMantisEstado.TabIndex = 5;
+            // 
+            // btnCargarMantisInfo
+            // 
+            this.btnCargarMantisInfo.Location = new System.Drawing.Point(3, 3);
+            this.btnCargarMantisInfo.Name = "btnCargarMantisInfo";
+            this.btnCargarMantisInfo.Size = new System.Drawing.Size(114, 23);
+            this.btnCargarMantisInfo.TabIndex = 10;
+            this.btnCargarMantisInfo.Text = "Cargar Datos";
+            this.btnCargarMantisInfo.UseVisualStyleBackColor = true;
+            this.btnCargarMantisInfo.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dgvEstadoAgrupado
+            // 
+            this.dgvEstadoAgrupado.AllowUserToAddRows = false;
+            this.dgvEstadoAgrupado.AllowUserToDeleteRows = false;
+            this.dgvEstadoAgrupado.AllowUserToOrderColumns = true;
+            this.dgvEstadoAgrupado.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.dgvEstadoAgrupado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEstadoAgrupado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEstadoAgrupado.Location = new System.Drawing.Point(0, 0);
+            this.dgvEstadoAgrupado.Name = "dgvEstadoAgrupado";
+            this.dgvEstadoAgrupado.ReadOnly = true;
+            this.dgvEstadoAgrupado.RowHeadersVisible = false;
+            this.dgvEstadoAgrupado.Size = new System.Drawing.Size(560, 87);
+            this.dgvEstadoAgrupado.TabIndex = 6;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.txtLabel);
+            this.tabPage4.Controls.Add(this.label6);
+            this.tabPage4.Controls.Add(this.txtComment);
+            this.tabPage4.Controls.Add(this.cmbComponent);
+            this.tabPage4.Controls.Add(this.cmbIssueType);
+            this.tabPage4.Controls.Add(this.lnkNewJira);
+            this.tabPage4.Controls.Add(this.lblCreateResult);
+            this.tabPage4.Controls.Add(this.label5);
+            this.tabPage4.Controls.Add(this.btnLimpiar);
+            this.tabPage4.Controls.Add(this.label4);
+            this.tabPage4.Controls.Add(this.label3);
+            this.tabPage4.Controls.Add(this.txtDescription);
+            this.tabPage4.Controls.Add(this.label2);
+            this.tabPage4.Controls.Add(this.txtSummary);
+            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.txtProjectKey);
+            this.tabPage4.Controls.Add(this.btnCrearEnJira);
+            this.tabPage4.Controls.Add(this.lblDatosJira);
+            this.tabPage4.Controls.Add(this.lblDatosMantis);
+            this.tabPage4.Controls.Add(this.btnBuscarJira);
+            this.tabPage4.Controls.Add(this.btnBuscarMantis);
+            this.tabPage4.Controls.Add(this.txtNroMantis);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(566, 429);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Crear Jira";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // lnkNewJira
+            // 
+            this.lnkNewJira.AutoSize = true;
+            this.lnkNewJira.Location = new System.Drawing.Point(128, 346);
+            this.lnkNewJira.Name = "lnkNewJira";
+            this.lnkNewJira.Size = new System.Drawing.Size(43, 13);
+            this.lnkNewJira.TabIndex = 19;
+            this.lnkNewJira.TabStop = true;
+            this.lnkNewJira.Text = "------------";
+            this.lnkNewJira.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkNewJira_LinkClicked);
+            // 
+            // lblCreateResult
+            // 
+            this.lblCreateResult.AutoSize = true;
+            this.lblCreateResult.Location = new System.Drawing.Point(128, 319);
+            this.lblCreateResult.Name = "lblCreateResult";
+            this.lblCreateResult.Size = new System.Drawing.Size(43, 13);
+            this.lblCreateResult.TabIndex = 18;
+            this.lblCreateResult.Text = "------------";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(128, 279);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Component";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(410, 16);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
+            this.btnLimpiar.TabIndex = 14;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(128, 253);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Type";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(128, 201);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Description";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(194, 198);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(316, 20);
+            this.txtDescription.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(128, 175);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Summary";
+            // 
+            // txtSummary
+            // 
+            this.txtSummary.Location = new System.Drawing.Point(194, 172);
+            this.txtSummary.Name = "txtSummary";
+            this.txtSummary.Size = new System.Drawing.Size(316, 20);
+            this.txtSummary.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(128, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Project";
+            // 
+            // txtProjectKey
+            // 
+            this.txtProjectKey.Location = new System.Drawing.Point(194, 147);
+            this.txtProjectKey.Name = "txtProjectKey";
+            this.txtProjectKey.Size = new System.Drawing.Size(128, 20);
+            this.txtProjectKey.TabIndex = 6;
+            this.txtProjectKey.Text = "CNS900";
+            // 
+            // btnCrearEnJira
+            // 
+            this.btnCrearEnJira.Location = new System.Drawing.Point(16, 170);
+            this.btnCrearEnJira.Name = "btnCrearEnJira";
+            this.btnCrearEnJira.Size = new System.Drawing.Size(100, 23);
+            this.btnCrearEnJira.TabIndex = 5;
+            this.btnCrearEnJira.Text = "Crear en Jira";
+            this.btnCrearEnJira.UseVisualStyleBackColor = true;
+            this.btnCrearEnJira.Click += new System.EventHandler(this.btnCrearEnJira_Click);
+            // 
+            // lblDatosJira
+            // 
+            this.lblDatosJira.AutoSize = true;
+            this.lblDatosJira.Location = new System.Drawing.Point(128, 92);
+            this.lblDatosJira.Name = "lblDatosJira";
+            this.lblDatosJira.Size = new System.Drawing.Size(43, 13);
+            this.lblDatosJira.TabIndex = 4;
+            this.lblDatosJira.Text = "------------";
+            // 
+            // lblDatosMantis
+            // 
+            this.lblDatosMantis.AutoSize = true;
+            this.lblDatosMantis.Location = new System.Drawing.Point(128, 56);
+            this.lblDatosMantis.Name = "lblDatosMantis";
+            this.lblDatosMantis.Size = new System.Drawing.Size(43, 13);
+            this.lblDatosMantis.TabIndex = 3;
+            this.lblDatosMantis.Text = "------------";
+            // 
+            // btnBuscarJira
+            // 
+            this.btnBuscarJira.Location = new System.Drawing.Point(17, 87);
+            this.btnBuscarJira.Name = "btnBuscarJira";
+            this.btnBuscarJira.Size = new System.Drawing.Size(100, 23);
+            this.btnBuscarJira.TabIndex = 2;
+            this.btnBuscarJira.Text = "Buscar en Jira";
+            this.btnBuscarJira.UseVisualStyleBackColor = true;
+            this.btnBuscarJira.Click += new System.EventHandler(this.btnBuscarJira_Click);
+            // 
+            // btnBuscarMantis
+            // 
+            this.btnBuscarMantis.Location = new System.Drawing.Point(17, 51);
+            this.btnBuscarMantis.Name = "btnBuscarMantis";
+            this.btnBuscarMantis.Size = new System.Drawing.Size(99, 23);
+            this.btnBuscarMantis.TabIndex = 1;
+            this.btnBuscarMantis.Text = "Buscar en Mantis";
+            this.btnBuscarMantis.UseVisualStyleBackColor = true;
+            this.btnBuscarMantis.Click += new System.EventHandler(this.btnBuscarMantis_Click);
+            // 
+            // txtNroMantis
+            // 
+            this.txtNroMantis.Location = new System.Drawing.Point(17, 16);
+            this.txtNroMantis.Name = "txtNroMantis";
+            this.txtNroMantis.Size = new System.Drawing.Size(100, 20);
+            this.txtNroMantis.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.btnGuardarConfig);
+            this.tabPage5.Controls.Add(this.btnCargarConfig);
+            this.tabPage5.Controls.Add(this.dgvConfig);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(566, 429);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Configuracion";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardarConfig
+            // 
+            this.btnGuardarConfig.Location = new System.Drawing.Point(159, 6);
+            this.btnGuardarConfig.Name = "btnGuardarConfig";
+            this.btnGuardarConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarConfig.TabIndex = 2;
+            this.btnGuardarConfig.Text = "Guardar";
+            this.btnGuardarConfig.UseVisualStyleBackColor = true;
+            this.btnGuardarConfig.Click += new System.EventHandler(this.btnGuardarConfig_Click);
+            // 
+            // btnCargarConfig
+            // 
+            this.btnCargarConfig.Location = new System.Drawing.Point(6, 6);
+            this.btnCargarConfig.Name = "btnCargarConfig";
+            this.btnCargarConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnCargarConfig.TabIndex = 1;
+            this.btnCargarConfig.Text = "Refrescar";
+            this.btnCargarConfig.UseVisualStyleBackColor = true;
+            this.btnCargarConfig.Click += new System.EventHandler(this.btnCargarConfig_Click);
+            // 
+            // dgvConfig
+            // 
+            this.dgvConfig.AllowUserToAddRows = false;
+            this.dgvConfig.AllowUserToDeleteRows = false;
+            this.dgvConfig.AllowUserToResizeRows = false;
+            this.dgvConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvConfig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConfig.Location = new System.Drawing.Point(6, 35);
+            this.dgvConfig.Name = "dgvConfig";
+            this.dgvConfig.Size = new System.Drawing.Size(554, 388);
+            this.dgvConfig.TabIndex = 0;
             // 
             // statusStrip1
             // 
@@ -400,36 +690,62 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
-            // dgvEstadoAgrupado
+            // btnBajarTimeReport
             // 
-            this.dgvEstadoAgrupado.AllowUserToAddRows = false;
-            this.dgvEstadoAgrupado.AllowUserToDeleteRows = false;
-            this.dgvEstadoAgrupado.AllowUserToOrderColumns = true;
-            this.dgvEstadoAgrupado.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dgvEstadoAgrupado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEstadoAgrupado.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEstadoAgrupado.Location = new System.Drawing.Point(0, 0);
-            this.dgvEstadoAgrupado.Name = "dgvEstadoAgrupado";
-            this.dgvEstadoAgrupado.ReadOnly = true;
-            this.dgvEstadoAgrupado.RowHeadersVisible = false;
-            this.dgvEstadoAgrupado.Size = new System.Drawing.Size(560, 87);
-            this.dgvEstadoAgrupado.TabIndex = 6;
+            this.btnBajarTimeReport.Location = new System.Drawing.Point(88, 12);
+            this.btnBajarTimeReport.Name = "btnBajarTimeReport";
+            this.btnBajarTimeReport.Size = new System.Drawing.Size(75, 23);
+            this.btnBajarTimeReport.TabIndex = 10;
+            this.btnBajarTimeReport.Text = "Cargar Archivo";
+            this.btnBajarTimeReport.UseVisualStyleBackColor = true;
+            this.btnBajarTimeReport.Visible = false;
+            this.btnBajarTimeReport.Click += new System.EventHandler(this.btnBajarTimeReport_Click);
             // 
-            // btnLoginMantis
+            // cmbIssueType
             // 
-            this.btnLoginMantis.Location = new System.Drawing.Point(441, 3);
-            this.btnLoginMantis.Name = "btnLoginMantis";
-            this.btnLoginMantis.Size = new System.Drawing.Size(114, 23);
-            this.btnLoginMantis.TabIndex = 11;
-            this.btnLoginMantis.Text = "Login Mantis";
-            this.btnLoginMantis.UseVisualStyleBackColor = true;
-            this.btnLoginMantis.Click += new System.EventHandler(this.btnLoginMantis_Click);
+            this.cmbIssueType.FormattingEnabled = true;
+            this.cmbIssueType.Location = new System.Drawing.Point(194, 250);
+            this.cmbIssueType.Name = "cmbIssueType";
+            this.cmbIssueType.Size = new System.Drawing.Size(149, 21);
+            this.cmbIssueType.TabIndex = 20;
+            // 
+            // cmbComponent
+            // 
+            this.cmbComponent.FormattingEnabled = true;
+            this.cmbComponent.Location = new System.Drawing.Point(194, 276);
+            this.cmbComponent.Name = "cmbComponent";
+            this.cmbComponent.Size = new System.Drawing.Size(149, 21);
+            this.cmbComponent.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(128, 227);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Comment";
+            // 
+            // txtComment
+            // 
+            this.txtComment.Location = new System.Drawing.Point(194, 224);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(316, 20);
+            this.txtComment.TabIndex = 22;
+            // 
+            // txtLabel
+            // 
+            this.txtLabel.Location = new System.Drawing.Point(349, 250);
+            this.txtLabel.Name = "txtLabel";
+            this.txtLabel.Size = new System.Drawing.Size(128, 20);
+            this.txtLabel.TabIndex = 24;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 483);
+            this.Controls.Add(this.btnBajarTimeReport);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnEquipo);
@@ -460,9 +776,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantisEstado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstadoAgrupado)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConfig)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEstadoAgrupado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,6 +818,34 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.DataGridView dgvEstadoAgrupado;
         private System.Windows.Forms.Button btnLoginMantis;
+        private System.Windows.Forms.Button btnBajarTimeReport;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnBuscarJira;
+        private System.Windows.Forms.Button btnBuscarMantis;
+        private System.Windows.Forms.TextBox txtNroMantis;
+        private System.Windows.Forms.Label lblDatosMantis;
+        private System.Windows.Forms.Label lblDatosJira;
+        private System.Windows.Forms.Button btnCrearEnJira;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSummary;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtProjectKey;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCreateResult;
+        private System.Windows.Forms.LinkLabel lnkNewJira;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.DataGridView dgvConfig;
+        private System.Windows.Forms.Button btnCargarConfig;
+        private System.Windows.Forms.Button btnGuardarConfig;
+        private System.Windows.Forms.ComboBox cmbComponent;
+        private System.Windows.Forms.ComboBox cmbIssueType;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtComment;
+        private System.Windows.Forms.TextBox txtLabel;
     }
 }
 

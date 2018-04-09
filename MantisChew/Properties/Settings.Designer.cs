@@ -39,12 +39,12 @@ namespace MantisChew.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://baufest.atlassian.net")]
-        public string JiraURL {
+        public string JiraUrlBase {
             get {
-                return ((string)(this["JiraURL"]));
+                return ((string)(this["JiraUrlBase"]));
             }
             set {
-                this["JiraURL"] = value;
+                this["JiraUrlBase"] = value;
             }
         }
         
@@ -86,42 +86,6 @@ namespace MantisChew.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://mantis.cencosud.corp")]
-        public string MantisUrlBase {
-            get {
-                return ((string)(this["MantisUrlBase"]));
-            }
-            set {
-                this["MantisUrlBase"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/it/view.php?id=")]
-        public string MantisUrlView {
-            get {
-                return ((string)(this["MantisUrlView"]));
-            }
-            set {
-                this["MantisUrlView"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/it/login.php")]
-        public string MantisUrlLogin {
-            get {
-                return ((string)(this["MantisUrlLogin"]));
-            }
-            set {
-                this["MantisUrlLogin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string MantisUser {
             get {
@@ -141,6 +105,91 @@ namespace MantisChew.Properties {
             }
             set {
                 this["MantisPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://g100603ws464")]
+        public string MantisUrlBase {
+            get {
+                return ((string)(this["MantisUrlBase"]));
+            }
+            set {
+                this["MantisUrlBase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/mantis/it/view.php?id=")]
+        public string MantisUrlView {
+            get {
+                return ((string)(this["MantisUrlView"]));
+            }
+            set {
+                this["MantisUrlView"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/mantis/it/login.php")]
+        public string MantisUrlLogin {
+            get {
+                return ((string)(this["MantisUrlLogin"]));
+            }
+            set {
+                this["MantisUrlLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CNS900")]
+        public string JiraProject {
+            get {
+                return ((string)(this["JiraProject"]));
+            }
+            set {
+                this["JiraProject"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SGC PEDIDOS CLIENTES,Pedidos de Clientes")]
+        public string JiraComponentConvert {
+            get {
+                return ((string)(this["JiraComponentConvert"]));
+            }
+            set {
+                this["JiraComponentConvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EVOLUTIVO,Requirement|CORRECTIVO,Change Request|SOPORTE,Task|HALLAZGO,Issue|INCID" +
+            "ENTE,Bug|ADMINISTRATIVA,Task")]
+        public string JiraIssueTypeConvert {
+            get {
+                return ((string)(this["JiraIssueTypeConvert"]));
+            }
+            set {
+                this["JiraIssueTypeConvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/browse/")]
+        public string JiraUrlView {
+            get {
+                return ((string)(this["JiraUrlView"]));
+            }
+            set {
+                this["JiraUrlView"] = value;
             }
         }
     }

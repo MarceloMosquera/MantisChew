@@ -14,7 +14,7 @@ namespace MantisChew
             string date = DateTime.Now.ToString("yyyy-MM-dd")+ "T12:00:00.000-0300";
             string timeSpentSeconds = (hours * 60 * 60).ToString();
 
-            string url = Properties.Settings.Default.JiraURL + "/rest/api/2/issue/" + key + "/worklog";
+            string url = Properties.Settings.Default.JiraUrlBase + "/rest/api/2/issue/" + key + "/worklog";
             var rawContent = "{ \"comment\": \"Creado desde MantisChew\",\"started\": \"" + date + "\",\"timeSpentSeconds\": \"" + timeSpentSeconds +"\" }";
             var client = new HttpClient();
             var content = new StringContent(rawContent, Encoding.UTF8, "application/json");

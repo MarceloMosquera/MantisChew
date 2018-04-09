@@ -994,6 +994,10 @@ namespace MantisChew {
             
             private global::System.Data.DataColumn columnHrsTotal;
             
+            private global::System.Data.DataColumn columnTipo;
+            
+            private global::System.Data.DataColumn columnResumen;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MantisEstadoDataTable() {
@@ -1077,6 +1081,22 @@ namespace MantisChew {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoColumn {
+                get {
+                    return this.columnTipo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ResumenColumn {
+                get {
+                    return this.columnResumen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1112,7 +1132,7 @@ namespace MantisChew {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MantisEstadoRow AddMantisEstadoRow(int Nro, string Proyecto, string Estado, string Fecha, string Version, string HrsTotal) {
+            public MantisEstadoRow AddMantisEstadoRow(int Nro, string Proyecto, string Estado, string Fecha, string Version, string HrsTotal, string Tipo, string Resumen) {
                 MantisEstadoRow rowMantisEstadoRow = ((MantisEstadoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Nro,
@@ -1120,7 +1140,9 @@ namespace MantisChew {
                         Estado,
                         Fecha,
                         Version,
-                        HrsTotal};
+                        HrsTotal,
+                        Tipo,
+                        Resumen};
                 rowMantisEstadoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMantisEstadoRow);
                 return rowMantisEstadoRow;
@@ -1149,6 +1171,8 @@ namespace MantisChew {
                 this.columnFecha = base.Columns["Fecha"];
                 this.columnVersion = base.Columns["Version"];
                 this.columnHrsTotal = base.Columns["HrsTotal"];
+                this.columnTipo = base.Columns["Tipo"];
+                this.columnResumen = base.Columns["Resumen"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1166,6 +1190,10 @@ namespace MantisChew {
                 base.Columns.Add(this.columnVersion);
                 this.columnHrsTotal = new global::System.Data.DataColumn("HrsTotal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHrsTotal);
+                this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipo);
+                this.columnResumen = new global::System.Data.DataColumn("Resumen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResumen);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1764,6 +1792,38 @@ namespace MantisChew {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Tipo {
+                get {
+                    try {
+                        return ((string)(this[this.tableMantisEstado.TipoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Tipo\' de la tabla \'MantisEstado\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMantisEstado.TipoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Resumen {
+                get {
+                    try {
+                        return ((string)(this[this.tableMantisEstado.ResumenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Resumen\' de la tabla \'MantisEstado\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMantisEstado.ResumenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNroNull() {
                 return this.IsNull(this.tableMantisEstado.NroColumn);
             }
@@ -1832,6 +1892,30 @@ namespace MantisChew {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetHrsTotalNull() {
                 this[this.tableMantisEstado.HrsTotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoNull() {
+                return this.IsNull(this.tableMantisEstado.TipoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoNull() {
+                this[this.tableMantisEstado.TipoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsResumenNull() {
+                return this.IsNull(this.tableMantisEstado.ResumenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetResumenNull() {
+                this[this.tableMantisEstado.ResumenColumn] = global::System.Convert.DBNull;
             }
         }
         

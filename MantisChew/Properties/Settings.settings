@@ -5,7 +5,7 @@
     <Setting Name="Usuarios" Type="System.String" Scope="User">
       <Value Profile="(Default)">Marcos Guaymas Javier|Marcelo Mosquera|Carlos Enrique Yanez|Nicolas Ramirez|Marco Paredes Reccio|Julian Di Riso|Javier Campa|Rodriguez, Emanuel|Facundo Yuffrida</Value>
     </Setting>
-    <Setting Name="JiraURL" Type="System.String" Scope="User">
+    <Setting Name="JiraUrlBase" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://baufest.atlassian.net</Value>
     </Setting>
     <Setting Name="JiraUser" Type="System.String" Scope="User">
@@ -17,20 +17,32 @@
     <Setting Name="MantisInternos" Type="System.String" Scope="User">
       <Value Profile="(Default)">24452|24188|24453|24612|24620</Value>
     </Setting>
-    <Setting Name="MantisUrlBase" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://mantis.cencosud.corp</Value>
-    </Setting>
-    <Setting Name="MantisUrlView" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/it/view.php?id=</Value>
-    </Setting>
-    <Setting Name="MantisUrlLogin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/it/login.php</Value>
-    </Setting>
     <Setting Name="MantisUser" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="MantisPass" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MantisUrlBase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://g100603ws464</Value>
+    </Setting>
+    <Setting Name="MantisUrlView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/mantis/it/view.php?id=</Value>
+    </Setting>
+    <Setting Name="MantisUrlLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/mantis/it/login.php</Value>
+    </Setting>
+    <Setting Name="JiraProject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CNS900</Value>
+    </Setting>
+    <Setting Name="JiraComponentConvert" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SGC PEDIDOS CLIENTES,Pedidos de Clientes</Value>
+    </Setting>
+    <Setting Name="JiraIssueTypeConvert" Type="System.String" Scope="User">
+      <Value Profile="(Default)">EVOLUTIVO,Requirement|CORRECTIVO,Change Request|SOPORTE,Task|HALLAZGO,Issue|INCIDENTE,Bug|ADMINISTRATIVA,Task</Value>
+    </Setting>
+    <Setting Name="JiraUrlView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/browse/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

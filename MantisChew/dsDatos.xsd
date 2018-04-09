@@ -12,7 +12,7 @@
   <xs:element name="dsDatos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsDatos" msprop:Generator_UserDSName="dsDatos">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Mantis" msprop:Generator_TableClassName="MantisDataTable" msprop:Generator_TableVarName="tableMantis" msprop:Generator_TablePropName="Mantis" msprop:Generator_RowDeletingName="MantisRowDeleting" msprop:Generator_RowChangingName="MantisRowChanging" msprop:Generator_RowEvHandlerName="MantisRowChangeEventHandler" msprop:Generator_RowDeletedName="MantisRowDeleted" msprop:Generator_UserTableName="Mantis" msprop:Generator_RowChangedName="MantisRowChanged" msprop:Generator_RowEvArgName="MantisRowChangeEvent" msprop:Generator_RowClassName="MantisRow">
+        <xs:element name="Mantis" msprop:Generator_TableClassName="MantisDataTable" msprop:Generator_TableVarName="tableMantis" msprop:Generator_RowChangedName="MantisRowChanged" msprop:Generator_TablePropName="Mantis" msprop:Generator_RowDeletingName="MantisRowDeleting" msprop:Generator_RowChangingName="MantisRowChanging" msprop:Generator_RowEvHandlerName="MantisRowChangeEventHandler" msprop:Generator_RowDeletedName="MantisRowDeleted" msprop:Generator_RowClassName="MantisRow" msprop:Generator_UserTableName="Mantis" msprop:Generator_RowEvArgName="MantisRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nro" msprop:Generator_ColumnVarNameInTable="columnNro" msprop:Generator_ColumnPropNameInRow="Nro" msprop:Generator_ColumnPropNameInTable="NroColumn" msprop:Generator_UserColumnName="Nro" type="xs:int" minOccurs="0" />
@@ -23,7 +23,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Jiras" msprop:Generator_TableClassName="JirasDataTable" msprop:Generator_TableVarName="tableJiras" msprop:Generator_TablePropName="Jiras" msprop:Generator_RowDeletingName="JirasRowDeleting" msprop:Generator_RowChangingName="JirasRowChanging" msprop:Generator_RowEvHandlerName="JirasRowChangeEventHandler" msprop:Generator_RowDeletedName="JirasRowDeleted" msprop:Generator_UserTableName="Jiras" msprop:Generator_RowChangedName="JirasRowChanged" msprop:Generator_RowEvArgName="JirasRowChangeEvent" msprop:Generator_RowClassName="JirasRow">
+        <xs:element name="Jiras" msprop:Generator_TableClassName="JirasDataTable" msprop:Generator_TableVarName="tableJiras" msprop:Generator_RowChangedName="JirasRowChanged" msprop:Generator_TablePropName="Jiras" msprop:Generator_RowDeletingName="JirasRowDeleting" msprop:Generator_RowChangingName="JirasRowChanging" msprop:Generator_RowEvHandlerName="JirasRowChangeEventHandler" msprop:Generator_RowDeletedName="JirasRowDeleted" msprop:Generator_RowClassName="JirasRow" msprop:Generator_UserTableName="Jiras" msprop:Generator_RowEvArgName="JirasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nro" msprop:Generator_ColumnVarNameInTable="columnNro" msprop:Generator_ColumnPropNameInRow="Nro" msprop:Generator_ColumnPropNameInTable="NroColumn" msprop:Generator_UserColumnName="Nro" type="xs:string" minOccurs="0" />
@@ -35,7 +35,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="MantisEstado" msprop:Generator_TableClassName="MantisEstadoDataTable" msprop:Generator_TableVarName="tableMantisEstado" msprop:Generator_RowChangedName="MantisEstadoRowChanged" msprop:Generator_TablePropName="MantisEstado" msprop:Generator_RowDeletingName="MantisEstadoRowDeleting" msprop:Generator_RowChangingName="MantisEstadoRowChanging" msprop:Generator_RowEvHandlerName="MantisEstadoRowChangeEventHandler" msprop:Generator_RowDeletedName="MantisEstadoRowDeleted" msprop:Generator_RowClassName="MantisEstadoRow" msprop:Generator_UserTableName="MantisEstado" msprop:Generator_RowEvArgName="MantisEstadoRowChangeEvent">
+        <xs:element name="MantisEstado" msprop:Generator_TableClassName="MantisEstadoDataTable" msprop:Generator_TableVarName="tableMantisEstado" msprop:Generator_TablePropName="MantisEstado" msprop:Generator_RowDeletingName="MantisEstadoRowDeleting" msprop:Generator_RowChangingName="MantisEstadoRowChanging" msprop:Generator_RowEvHandlerName="MantisEstadoRowChangeEventHandler" msprop:Generator_RowDeletedName="MantisEstadoRowDeleted" msprop:Generator_UserTableName="MantisEstado" msprop:Generator_RowChangedName="MantisEstadoRowChanged" msprop:Generator_RowEvArgName="MantisEstadoRowChangeEvent" msprop:Generator_RowClassName="MantisEstadoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nro" msprop:Generator_ColumnVarNameInTable="columnNro" msprop:Generator_ColumnPropNameInRow="Nro" msprop:Generator_ColumnPropNameInTable="NroColumn" msprop:Generator_UserColumnName="Nro" type="xs:int" minOccurs="0" />
@@ -44,6 +44,8 @@
               <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:string" minOccurs="0" />
               <xs:element name="Version" msprop:Generator_ColumnVarNameInTable="columnVersion" msprop:Generator_ColumnPropNameInRow="Version" msprop:Generator_ColumnPropNameInTable="VersionColumn" msprop:Generator_UserColumnName="Version" type="xs:string" minOccurs="0" />
               <xs:element name="HrsTotal" msprop:Generator_ColumnVarNameInTable="columnHrsTotal" msprop:Generator_ColumnPropNameInRow="HrsTotal" msprop:Generator_ColumnPropNameInTable="HrsTotalColumn" msprop:Generator_UserColumnName="HrsTotal" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo" type="xs:string" minOccurs="0" />
+              <xs:element name="Resumen" msprop:Generator_ColumnVarNameInTable="columnResumen" msprop:Generator_ColumnPropNameInRow="Resumen" msprop:Generator_ColumnPropNameInTable="ResumenColumn" msprop:Generator_UserColumnName="Resumen" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -56,7 +58,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Mantis_Jiras" msdata:parent="Mantis" msdata:child="Jiras" msdata:parentkey="Nro" msdata:childkey="NroMantis" msprop:Generator_UserChildTable="Jiras" msprop:Generator_ChildPropName="GetJirasRows" msprop:Generator_UserRelationName="Mantis_Jiras" msprop:Generator_ParentPropName="MantisRow" msprop:Generator_RelationVarName="relationMantis_Jiras" msprop:Generator_UserParentTable="Mantis" />
+      <msdata:Relationship name="Mantis_Jiras" msdata:parent="Mantis" msdata:child="Jiras" msdata:parentkey="Nro" msdata:childkey="NroMantis" msprop:Generator_UserChildTable="Jiras" msprop:Generator_ChildPropName="GetJirasRows" msprop:Generator_UserRelationName="Mantis_Jiras" msprop:Generator_RelationVarName="relationMantis_Jiras" msprop:Generator_UserParentTable="Mantis" msprop:Generator_ParentPropName="MantisRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

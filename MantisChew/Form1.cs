@@ -13,6 +13,7 @@ using Jira.SDK.Domain;
 using System.Net.Http;
 using HtmlAgilityPack;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace MantisChew
 {
@@ -41,6 +42,7 @@ namespace MantisChew
             this.MantisUrl = Properties.Settings.Default.MantisUrlBase;
             this.toolStripStatusLabel1.Text = "";
             dgvMantisEstado.DataSource = Datos.MantisEstado;
+            CargarConfig();
         }
 
         private void CargarEquipo()
@@ -58,7 +60,7 @@ namespace MantisChew
         {
             try
             {
-                this.JiraUrl = Properties.Settings.Default.JiraURL;
+                this.JiraUrl = Properties.Settings.Default.JiraUrlBase;
                 jira.Connect(this.JiraUrl, 
                     Properties.Settings.Default.JiraUser, 
                     Properties.Settings.Default.JiraPass);
@@ -196,7 +198,7 @@ namespace MantisChew
         private void CargarDGVHorasxJira(int mantis)
         {
             dgvHorasxJira.DataSource = Datos.Jiras;
-            Datos.Jiras.DefaultView.RowFilter = string.Format("NroMantis = '{0}'", mantis);
+            Datos.Jiras.DefaultView.RowFilter = $"NroMantis = '{mantis}'";
             dgvHorasxJira.Refresh();
         }
 
@@ -216,11 +218,12 @@ namespace MantisChew
             }
         }
 
-        private List<Issue> BuscarEnJira(int mantis)
+        private List<Issue> BuscarEnJira(int mantis, bool soloSubTask = true)
         {
-            //Gets all of the projects configured in your jira instance
-            //List<Project> projects = jira.GetProjects();
-            return jira.SearchIssues(string.Format(@"text~""{0}"" and project=""Cencosud - Super NET"" and issuetype in (Sub-task) and Sprint in openSprints()", mantis));
+            var jql = $@"text~""{mantis}"" and project=""{Properties.Settings.Default.JiraProject}"""
+                + (soloSubTask ? " and issuetype in (Sub-task) and Sprint in openSprints()" : ""); 
+            return jira.SearchIssues(jql);
+
         }
 
         private DataTable CrearDTDetalleMantis()
@@ -352,7 +355,9 @@ namespace MantisChew
             {
                 var key = (string)dgvHorasxJira.Rows[dgvHorasxJira.SelectedCells[0].RowIndex].Cells[0].Value;
                 System.Diagnostics.Process.Start(
-                    this.JiraUrl + string.Format("/browse/{0}", key));
+                    Properties.Settings.Default.JiraUrlBase + 
+                    Properties.Settings.Default.JiraUrlView + 
+                    key);
             }
         }
 
@@ -496,16 +501,23 @@ namespace MantisChew
 
             using (var mantisInfo = new MantisInfo())
             {
-                foreach (var row in mantisAProc)
+                if (mantisInfo.LoginOK)
                 {
-                    toolStripProgressBar1.Value++;
-                    toolStripStatusLabel1.Text = $"Buscando en mantis: {row.Nro}  {toolStripProgressBar1.Value}/{toolStripProgressBar1.Maximum}";
-                    Refresh();
+                    foreach (var row in mantisAProc)
+                    {
+                        toolStripProgressBar1.Value++;
+                        toolStripStatusLabel1.Text = $"Buscando en mantis: {row.Nro}  {toolStripProgressBar1.Value}/{toolStripProgressBar1.Maximum}";
+                        Refresh();
 
-                    var newMantisEstadoRow = Datos.MantisEstado.NewMantisEstadoRow();
-                    newMantisEstadoRow.Nro = row.Nro;
-                    mantisInfo.Download(newMantisEstadoRow);
-                    Datos.MantisEstado.AddMantisEstadoRow(newMantisEstadoRow);
+                        var newMantisEstadoRow = Datos.MantisEstado.NewMantisEstadoRow();
+                        newMantisEstadoRow.Nro = row.Nro;
+                        mantisInfo.Download(newMantisEstadoRow);
+                        Datos.MantisEstado.AddMantisEstadoRow(newMantisEstadoRow);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error en el login de Mantis");
                 }
             }
             dgvMantisEstado.DataSource = Datos.MantisEstado;
@@ -542,8 +554,37 @@ namespace MantisChew
                 Properties.Settings.Default.MantisUser = f.User;
                 Properties.Settings.Default.MantisPass = f.Pass;
                 Properties.Settings.Default.Save();
+
+                using (var mantisInfo = new MantisInfo())
+                    if (!mantisInfo.LoginOK)
+                      MessageBox.Show("Error en el login de Mantis");
+                    else
+                        MessageBox.Show("OK login de Mantis");
             }
         }
+
+        private void btnBajarTimeReport_Click(object sender, EventArgs e)
+        {
+            using (var mantisInfo = new MantisInfo())
+                if (!mantisInfo.LoginOK)
+                    MessageBox.Show("Error en el login de Mantis");
+                else
+                {
+                    Datos = new dsDatos();
+                    //JirasBuscados = new Dictionary<int, DataTable>();
+                    DatosArchivo = new List<TimeTrack>();
+                    //using (Stream str = mantisInfo.DownloadTimeReport(new DateTime(2018, 2, 5), new DateTime(2018, 3, 4)))
+                    //{
+                    //    DatosArchivo = FileParser.Parse(str);
+                    //}
+                    var str = mantisInfo.DownloadTimeReport2(new DateTime(2018, 2, 5), new DateTime(2018, 3, 4));
+
+                    CargarUsuarios();
+                    btnEquipo_Click(sender, e);
+                }
+           
+        }
+
     }
 }
  
