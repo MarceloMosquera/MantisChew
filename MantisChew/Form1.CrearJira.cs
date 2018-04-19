@@ -26,7 +26,7 @@ namespace MantisChew
 
             var mantisAProc = Datos.Mantis.Where(m => !EquipoActivo.MantisInternos.Contains(m.Nro)).ToList();
 
-            toolStripStatusLabel1.Text = "Buscando en Mantis";
+            setStatusText("Buscando en Mantis");
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = 1;
 
@@ -38,7 +38,7 @@ namespace MantisChew
             {
                 if (mantisInfo.LoginOK)
                 {
-                    toolStripStatusLabel1.Text = $"Buscando en mantis: {nroMantis}";
+                    setStatusText($"Buscando en mantis: {nroMantis}");
                     Refresh();
 
                     mantisInfo.Download(newMantisEstadoRow);
@@ -49,7 +49,7 @@ namespace MantisChew
                     newMantisEstadoRow = null;
                 }
             }
-            toolStripStatusLabel1.Text = "";
+            setStatusText("");
             toolStripProgressBar1.Value = 0;
 
             if (newMantisEstadoRow == null)
@@ -105,18 +105,18 @@ namespace MantisChew
 
         private void btnBuscarJira_Click(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Buscando en Jira";
+            setStatusText( "Buscando en Jira");
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = 1;
 
             var nroMantis = int.Parse(txtNroMantis.Text);
 
-            toolStripStatusLabel1.Text = $"Buscando en Jira : {nroMantis}";
+            setStatusText($"Buscando en Jira : {nroMantis}");
             Refresh();
 
             List<Issue> issues = BuscarEnJira(nroMantis, false);
 
-            toolStripStatusLabel1.Text = "";
+            setStatusText("");
             toolStripProgressBar1.Value = 0;
 
             if (!issues.Any())

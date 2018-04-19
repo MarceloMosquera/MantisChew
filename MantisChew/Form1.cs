@@ -35,9 +35,15 @@ namespace MantisChew
             CargarEquipo();
             ConectarJira();
             this.MantisUrl = Properties.Settings.Default.MantisUrlBase;
-            this.toolStripStatusLabel1.Text = "";
+            setStatusText( "");
             dgvMantisEstado.DataSource = Datos.MantisEstado;
             CargarConfig();
+        }
+
+        private void setStatusText(string mensaje)
+        {
+            log.Info(mensaje);
+            this.toolStripStatusLabel1.Text = mensaje;
         }
 
         private void CargarEquipo()
@@ -320,7 +326,7 @@ namespace MantisChew
 
         private void btnBuscarTodosJira_Click(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Buscando en Jira";
+            setStatusText( "Buscando en Jira");
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = Datos.Mantis.Rows.Count;
             for (int i = 0; i < Datos.Mantis.Rows.Count; i++)
@@ -328,7 +334,7 @@ namespace MantisChew
                 var mantis = GetMantis(i);
 
                 toolStripProgressBar1.Value++;
-                toolStripStatusLabel1.Text = $"Buscando en Jira el mantis: {mantis}";
+                setStatusText( $"Buscando en Jira el mantis: {mantis}");
                 Refresh();
 
                 CargarHorasxJira(mantis);
@@ -341,7 +347,7 @@ namespace MantisChew
                 }
             }
 
-            toolStripStatusLabel1.Text = "";
+            setStatusText( "");
             toolStripProgressBar1.Value = 0;
         }
 
@@ -491,7 +497,7 @@ namespace MantisChew
 
             var mantisAProc = Datos.Mantis.Where(m => !EquipoActivo.MantisInternos.Contains(m.Nro)).ToList();
 
-            toolStripStatusLabel1.Text = "Buscando en Mantis";
+            setStatusText( "Buscando en Mantis");
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = mantisAProc.Count;
 
@@ -502,7 +508,7 @@ namespace MantisChew
                     foreach (var row in mantisAProc)
                     {
                         toolStripProgressBar1.Value++;
-                        toolStripStatusLabel1.Text = $"Buscando en mantis: {row.Nro}  {toolStripProgressBar1.Value}/{toolStripProgressBar1.Maximum}";
+                        setStatusText( $"Buscando en mantis: {row.Nro}  {toolStripProgressBar1.Value}/{toolStripProgressBar1.Maximum}");
                         Refresh();
 
                         var newMantisEstadoRow = Datos.MantisEstado.NewMantisEstadoRow();
@@ -521,7 +527,7 @@ namespace MantisChew
 
             CargarDGVEstadoAgrupado();
 
-            toolStripStatusLabel1.Text = "";
+            setStatusText( "");
             toolStripProgressBar1.Value = 0;
 
         }

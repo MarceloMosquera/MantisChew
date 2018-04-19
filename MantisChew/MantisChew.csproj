@@ -169,7 +169,6 @@
     <None Include="dsDatos.xss">
       <DependentUpon>dsDatos.xsd</DependentUpon>
     </None>
-    <None Include="MantisChew_ClaveTemporal.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\MantisChew.Properties.Settings.datasource" />
