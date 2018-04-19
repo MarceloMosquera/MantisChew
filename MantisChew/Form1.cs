@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Jira.SDK;
 using Jira.SDK.Domain;
-using System.Net.Http;
-using HtmlAgilityPack;
-using System.Text.RegularExpressions;
-using System.IO;
+using log4net;
 
 namespace MantisChew
 {
     public partial class Form1 : Form
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
 
         private dsDatos Datos = new dsDatos();
         private List<TimeTrack> DatosArchivo = new List<TimeTrack>();
@@ -67,6 +62,7 @@ namespace MantisChew
             }
             catch (Exception e)
             {
+                log.Error("No se pudo conectar a Jira" + e.Message);
                 MessageBox.Show("No se pudo conectar a Jira" + e.Message);
             }
         }
@@ -585,6 +581,10 @@ namespace MantisChew
            
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
  

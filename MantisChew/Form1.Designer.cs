@@ -54,6 +54,11 @@
             this.btnCargarMantisInfo = new System.Windows.Forms.Button();
             this.dgvEstadoAgrupado = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtLabel = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.cmbComponent = new System.Windows.Forms.ComboBox();
+            this.cmbIssueType = new System.Windows.Forms.ComboBox();
             this.lnkNewJira = new System.Windows.Forms.LinkLabel();
             this.lblCreateResult = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -79,11 +84,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.btnBajarTimeReport = new System.Windows.Forms.Button();
-            this.cmbIssueType = new System.Windows.Forms.ComboBox();
-            this.cmbComponent = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtComment = new System.Windows.Forms.TextBox();
-            this.txtLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorasxMantis)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -189,6 +189,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(574, 455);
             this.tabControl1.TabIndex = 8;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -465,6 +466,45 @@
             this.tabPage4.Text = "Crear Jira";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // txtLabel
+            // 
+            this.txtLabel.Location = new System.Drawing.Point(349, 250);
+            this.txtLabel.Name = "txtLabel";
+            this.txtLabel.Size = new System.Drawing.Size(128, 20);
+            this.txtLabel.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(128, 227);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Comment";
+            // 
+            // txtComment
+            // 
+            this.txtComment.Location = new System.Drawing.Point(194, 224);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(316, 20);
+            this.txtComment.TabIndex = 22;
+            // 
+            // cmbComponent
+            // 
+            this.cmbComponent.FormattingEnabled = true;
+            this.cmbComponent.Location = new System.Drawing.Point(194, 276);
+            this.cmbComponent.Name = "cmbComponent";
+            this.cmbComponent.Size = new System.Drawing.Size(149, 21);
+            this.cmbComponent.TabIndex = 21;
+            // 
+            // cmbIssueType
+            // 
+            this.cmbIssueType.FormattingEnabled = true;
+            this.cmbIssueType.Location = new System.Drawing.Point(194, 250);
+            this.cmbIssueType.Name = "cmbIssueType";
+            this.cmbIssueType.Size = new System.Drawing.Size(149, 21);
+            this.cmbIssueType.TabIndex = 20;
+            // 
             // lnkNewJira
             // 
             this.lnkNewJira.AutoSize = true;
@@ -556,11 +596,12 @@
             // 
             // txtProjectKey
             // 
+            this.txtProjectKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MantisChew.Properties.Settings.Default, "JiraProject", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtProjectKey.Location = new System.Drawing.Point(194, 147);
             this.txtProjectKey.Name = "txtProjectKey";
             this.txtProjectKey.Size = new System.Drawing.Size(128, 20);
             this.txtProjectKey.TabIndex = 6;
-            this.txtProjectKey.Text = "CNS900";
+            this.txtProjectKey.Text = global::MantisChew.Properties.Settings.Default.JiraProject;
             // 
             // btnCrearEnJira
             // 
@@ -700,45 +741,6 @@
             this.btnBajarTimeReport.UseVisualStyleBackColor = true;
             this.btnBajarTimeReport.Visible = false;
             this.btnBajarTimeReport.Click += new System.EventHandler(this.btnBajarTimeReport_Click);
-            // 
-            // cmbIssueType
-            // 
-            this.cmbIssueType.FormattingEnabled = true;
-            this.cmbIssueType.Location = new System.Drawing.Point(194, 250);
-            this.cmbIssueType.Name = "cmbIssueType";
-            this.cmbIssueType.Size = new System.Drawing.Size(149, 21);
-            this.cmbIssueType.TabIndex = 20;
-            // 
-            // cmbComponent
-            // 
-            this.cmbComponent.FormattingEnabled = true;
-            this.cmbComponent.Location = new System.Drawing.Point(194, 276);
-            this.cmbComponent.Name = "cmbComponent";
-            this.cmbComponent.Size = new System.Drawing.Size(149, 21);
-            this.cmbComponent.TabIndex = 21;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(128, 227);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Comment";
-            // 
-            // txtComment
-            // 
-            this.txtComment.Location = new System.Drawing.Point(194, 224);
-            this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(316, 20);
-            this.txtComment.TabIndex = 22;
-            // 
-            // txtLabel
-            // 
-            this.txtLabel.Location = new System.Drawing.Point(349, 250);
-            this.txtLabel.Name = "txtLabel";
-            this.txtLabel.Size = new System.Drawing.Size(128, 20);
-            this.txtLabel.TabIndex = 24;
             // 
             // Form1
             // 

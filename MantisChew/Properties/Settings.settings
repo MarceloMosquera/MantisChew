@@ -44,5 +44,8 @@
     <Setting Name="JiraUrlView" Type="System.String" Scope="User">
       <Value Profile="(Default)">/browse/</Value>
     </Setting>
+    <Setting Name="JiraUrlApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/rest/api/2/issue/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

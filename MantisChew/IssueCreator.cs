@@ -14,7 +14,7 @@ namespace MantisChew
         public static CreateResponse Crear(IssueToCreate issueToCreate)
         {
 
-            string url = Properties.Settings.Default.JiraUrlBase + "/rest/api/2/issue/";
+            string url = Properties.Settings.Default.JiraUrlBase + Properties.Settings.Default.JiraUrlApi;
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -22,10 +22,10 @@ namespace MantisChew
 
             var taskCreate = client.PostAsync(url, GetCreateContent(issueToCreate)); taskCreate.Wait();
             var result = taskCreate.Result;
+            var taskReadResponse = result.Content.ReadAsStringAsync(); taskReadResponse.Wait();
+            var respJson = taskReadResponse.Result;
             if (result.StatusCode == System.Net.HttpStatusCode.Created)
             {
-                var taskReadResponse = result.Content.ReadAsStringAsync(); taskReadResponse.Wait();
-                var respJson = taskReadResponse.Result;
                 var response = JsonConvert.DeserializeObject<CreateResponse>(respJson);
 
                 var taskUpdate = client.PutAsync(response.self, GetUpdateContent(issueToCreate)); taskUpdate.Wait();
@@ -33,7 +33,7 @@ namespace MantisChew
 
                 if (result.StatusCode == System.Net.HttpStatusCode.NoContent) return response;
             }
-            throw new ApplicationException(result.ReasonPhrase);
+            throw new ApplicationException(respJson);
         }
 
         private static StringContent GetCreateContent(IssueToCreate issueToCreate)

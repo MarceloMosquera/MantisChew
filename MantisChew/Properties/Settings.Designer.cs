@@ -192,5 +192,17 @@ namespace MantisChew.Properties {
                 this["JiraUrlView"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/rest/api/2/issue/")]
+        public string JiraUrlApi {
+            get {
+                return ((string)(this["JiraUrlApi"]));
+            }
+            set {
+                this["JiraUrlApi"] = value;
+            }
+        }
     }
 }

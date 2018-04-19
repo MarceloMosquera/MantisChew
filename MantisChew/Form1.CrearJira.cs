@@ -21,19 +21,8 @@ namespace MantisChew
                 Properties.Settings.Default.Save();
             }
 
-            var dicIssueTypes = new Dictionary<string, string>();
-            foreach (var item in Properties.Settings.Default.JiraIssueTypeConvert.Split('|').Select(x=> x.Split(',')))
-            {
-                dicIssueTypes.Add(item[0], item[1]);
-            }
-
-            var dicComponents = new Dictionary<string, string>();
-            foreach (var item in Properties.Settings.Default.JiraComponentConvert.Split('|').Select(x => x.Split(',')))
-            {
-                dicComponents.Add(item[0], item[1]);
-            }
-
-
+            Dictionary<string, string> dicIssueTypes = CargarIssueTypes();
+            Dictionary<string, string> dicComponents = CargarComponents();
 
             var mantisAProc = Datos.Mantis.Where(m => !EquipoActivo.MantisInternos.Contains(m.Nro)).ToList();
 
@@ -51,7 +40,6 @@ namespace MantisChew
                 {
                     toolStripStatusLabel1.Text = $"Buscando en mantis: {nroMantis}";
                     Refresh();
-
 
                     mantisInfo.Download(newMantisEstadoRow);
                 }
@@ -76,7 +64,8 @@ namespace MantisChew
                     cmbIssueType.Items.AddRange(dicIssueTypes.Values.ToArray());
 
                 lblDatosMantis.Text = $"{newMantisEstadoRow.Resumen} - {newMantisEstadoRow.Tipo} - {newMantisEstadoRow.Proyecto}";
-                cmbIssueType.SelectedItem = dicIssueTypes[newMantisEstadoRow.Tipo];
+
+                cmbIssueType.SelectedItem = dicIssueTypes.ContainsKey(newMantisEstadoRow.Tipo) ? dicIssueTypes[newMantisEstadoRow.Tipo] : "Task";
                 var componente = dicComponents.ContainsKey(newMantisEstadoRow.Proyecto) ? dicComponents[newMantisEstadoRow.Proyecto] : newMantisEstadoRow.Proyecto;
                 cmbComponent.SelectedItem = componente;
 
@@ -92,6 +81,27 @@ namespace MantisChew
 
         }
 
+        private static Dictionary<string, string> CargarComponents()
+        {
+            var dicComponents = new Dictionary<string, string>();
+            foreach (var item in Properties.Settings.Default.JiraComponentConvert.Split('|').Select(x => x.Split(',')))
+            {
+                dicComponents.Add(item[0], item[1]);
+            }
+
+            return dicComponents;
+        }
+
+        private static Dictionary<string, string> CargarIssueTypes()
+        {
+            var dicIssueTypes = new Dictionary<string, string>();
+            foreach (var item in Properties.Settings.Default.JiraIssueTypeConvert.Split('|').Select(x => x.Split(',')))
+            {
+                dicIssueTypes.Add(item[0], item[1]);
+            }
+
+            return dicIssueTypes;
+        }
 
         private void btnBuscarJira_Click(object sender, EventArgs e)
         {
