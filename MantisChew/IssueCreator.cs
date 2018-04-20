@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,6 +12,8 @@ namespace MantisChew
 {
     public class IssueCreator
     {
+
+        public const string TYPE_TASK = "Task";
         public static CreateResponse Crear(IssueToCreate issueToCreate)
         {
 
@@ -38,7 +41,18 @@ namespace MantisChew
 
         private static StringContent GetCreateContent(IssueToCreate issueToCreate)
         {
-            var issue = new
+            object issue;
+
+            if (issueToCreate.IssueType == TYPE_TASK) issue = GetObjectContentForTypeTask(issueToCreate);
+            else issue = GetObjectContentDefault(issueToCreate);
+
+            string rawContent = JsonConvert.SerializeObject(issue);
+
+            return new StringContent(rawContent, Encoding.UTF8, "application/json");
+        }
+        private static object GetObjectContentDefault(IssueToCreate issueToCreate)
+        { 
+            return new
             {
                 fields = new
                 {
@@ -46,16 +60,24 @@ namespace MantisChew
                     summary = issueToCreate.Summary,
                     description = issueToCreate.Description,
                     issuetype = new { name = issueToCreate.IssueType },
-                    customfield_13900 = issueToCreate.NroExterno,
+                    customfield_13900 =  issueToCreate.NroExterno,
                     labels = new[] { issueToCreate.Label }
                 }
-
             };
-
-
-            string rawContent = JsonConvert.SerializeObject(issue);
-
-            return new StringContent(rawContent, Encoding.UTF8, "application/json");
+        }
+        private static object GetObjectContentForTypeTask(IssueToCreate issueToCreate)
+        {
+            return new
+            {
+                fields = new
+                {
+                    project = new { key = issueToCreate.Project },
+                    summary = issueToCreate.Summary,
+                    description = issueToCreate.Description,
+                    issuetype = new { name = issueToCreate.IssueType },
+                    labels = new[] { issueToCreate.Label }
+                }
+            };
         }
 
         private static StringContent GetUpdateContent(IssueToCreate issueToCreate)

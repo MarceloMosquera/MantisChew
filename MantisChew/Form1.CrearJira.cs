@@ -123,7 +123,7 @@ namespace MantisChew
                 lblDatosJira.Text = "Mantis no encontrado";
             else
             {
-                lblDatosJira.Text = $"{issues.FirstOrDefault().Summary} - {issues.FirstOrDefault().Description} - {issues.FirstOrDefault().IssueType.Name} - {issues.FirstOrDefault().Fields.Components?[0].Name}";
+                lblDatosJira.Text = $"{issues.FirstOrDefault().Summary} - {issues.FirstOrDefault().Description} - {issues.FirstOrDefault().IssueType.Name} - {issues.FirstOrDefault().Fields.Components.FirstOrDefault()?.Name}";
             }
 
         }
