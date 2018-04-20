@@ -57,7 +57,7 @@ namespace MantisChew
             clstUsuarios.Items.Clear();
             clstUsuarios.Items.AddRange(usuarios.ToArray());
         }
-        private void ConectarJira()
+        private bool ConectarJira()
         {
             try
             {
@@ -65,12 +65,25 @@ namespace MantisChew
                 jira.Connect(this.JiraUrl, 
                     Properties.Settings.Default.JiraUser, 
                     Properties.Settings.Default.JiraPass);
+                return true;
             }
             catch (Exception e)
             {
                 log.Error("No se pudo conectar a Jira" + e.Message);
-                MessageBox.Show("No se pudo conectar a Jira" + e.Message);
+                var msg = MessageBox.Show("No se pudo conectar a Jira" + e.Message, "Error Coneccion jira", MessageBoxButtons.RetryCancel);
+                if (msg == DialogResult.Cancel) return false;
+                ShowLoginJira();
             }
+            return false;
+        }
+
+        private void ShowLoginJira()
+        {
+            var f = new FrmLoginJira();
+            if (f.ShowDialog() == DialogResult.Cancel) return;
+            if (ConectarJira()) 
+                Properties.Settings.Default.Save();
+            
         }
 
         #endregion
